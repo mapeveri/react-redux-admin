@@ -1,21 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { Router, useRouterHistory } from 'react-router';
+import { Route, Router, useRouterHistory } from 'react-router';
 import { createHashHistory } from 'history';
 
 import configureStore from './store';
-import routes from './routes';
+import Login from './containers/admin/Login';
 
-let divPoint = document.getElementById('app');
 const store = configureStore();
-
 const history = useRouterHistory(createHashHistory)({ queryKey: false })
 
-ReactDOM.render(
-    <Provider store={store}>
-        <Router history={history}>
-            {routes}
-        </Router>
-    </Provider>, divPoint
-)
+
+export default class ReactReduxAdmin extends Component {
+    constructor(props, context) {
+      super(props, context);
+    }
+
+    render() {
+        return (
+            <Provider store={store}>
+                <Router history={history}>
+                    <Route>
+                        <Route path="/" data={this.props.data} component={Login} />
+                    </Route>
+                </Router>
+            </Provider>
+        );
+    }
+}
+
+ReactReduxAdmin.propTypes = {
+    data: React.PropTypes.object.isRequired
+};
