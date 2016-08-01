@@ -8,7 +8,7 @@ import { createHashHistory } from 'history';
 import configureStore from './store';
 import Login from './containers/admin/Login';
 
-import {parseDataAdmin} from './utils/utils';
+import { generateRoutes, parseDataAdmin } from './utils/utils';
 
 const store = configureStore();
 const history = useRouterHistory(createHashHistory)({ queryKey: false })
@@ -25,11 +25,15 @@ export default class ReactReduxAdmin extends Component {
     render() {
         //Parse models.js
         let data = parseDataAdmin(this.props.data);
+        //Generate routes
+        let routes = generateRoutes(data);
+
         return (
             <Provider store={store}>
                 <Router history={history}>
                     <Route>
                         <Route path="/" data={data} component={Login} />
+                        { routes }
                     </Route>
                 </Router>
             </Provider>

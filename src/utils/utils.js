@@ -1,3 +1,8 @@
+import React from 'react';
+import { Route } from 'react-router';
+
+import Crud from '../containers/admin/Crud';
+
 /*
   @method: parseDataAdmin
   @descrip: Function that return one object with:
@@ -27,4 +32,18 @@ export function parseDataAdmin(data){
     columns: columns,
     fields: fields
   }
+}
+
+/*
+  @method: generateRoutes
+  @descrip: Generate routes in base to models register
+  @params: data {object} data configuration admin
+*/
+export function generateRoutes(data){
+  let routes = [];
+  data.models.forEach((model, i) => {
+      routes.push(<Route key={i} path={"/" + model} data={data} component={Crud} />);
+  })
+
+  return routes;
 }
