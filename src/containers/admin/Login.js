@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { hashHistory } from 'react-router';
 import { reduxForm } from 'redux-form';
 
+import Container from '../../components/admin/Container';
 import Navbar from '../../components/admin/Navbar';
 
 export const fields = ['username', 'password'];
@@ -37,25 +38,34 @@ class Login extends Component {
         return (
             <div>
                 <Navbar />
-                <form onSubmit={handleSubmit(this.handleSubmit)}>
-                    <div>
-                        <div>
-                            <input type="text" className="form-control" placeholder="Username" {...username} />
-                        </div>
-                        {username.touched && username.error && <div style={{"color": "red"}}>{username.error}</div>}
+                <Container>
+                    <div className="panel panel-default">
+                      <div className="panel-heading">
+                        <h3 className="panel-title">Login</h3>
+                      </div>
+                      <div className="panel-body">
+                        <form onSubmit={handleSubmit(this.handleSubmit)}>
+                            <div>
+                                <div>
+                                    <input type="text" className="form-control" placeholder="Username" {...username} />
+                                </div>
+                                {username.touched && username.error && <div style={{"color": "red"}}>{username.error}</div>}
+                            </div>
+                            <div>
+                                <div>
+                                    <input type="password" className="form-control" placeholder="Password" {...password} />
+                                </div>
+                                {password.touched && password.error && <div style={{"color": "red"}}>{password.error}</div>}
+                            </div>
+                            <div>
+                                <button type="submit" disabled={submitting}>
+                                    {submitting ? <i/> : <i/>} {"Login"}
+                                </button>
+                            </div>
+                        </form>
+                      </div>
                     </div>
-                    <div>
-                        <div>
-                            <input type="password" className="form-control" placeholder="Password" {...password} />
-                        </div>
-                        {password.touched && password.error && <div style={{"color": "red"}}>{password.error}</div>}
-                    </div>
-                    <div>
-                        <button type="submit" disabled={submitting}>
-                            {submitting ? <i/> : <i/>} {"Login"}
-                        </button>
-                    </div>
-                </form>
+                </Container>
             </div>
         )
     }
