@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Container from '../../components/admin/Container';
+import Grid from '../../components/admin/Grid';
 import Navbar from '../../components/admin/Navbar';
 import Panel from '../../components/admin/Panel';
 
@@ -24,6 +25,7 @@ export default class Crud extends Component {
               <Navbar name_admin={ data.name_admin } />
               <Container>
                   <Panel title={title_crud}>
+                    <Grid data={data} />
                   </Panel>
               </Container>
             </div>
