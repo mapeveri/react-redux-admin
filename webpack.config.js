@@ -3,16 +3,13 @@ const webpack = require('webpack');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
-  entry: './src/index.js',
+  entry: {
+    a: './src/index.js',
+    b: './example/js/index.js'
+  },
   output: { path: __dirname, filename: 'build/bundle.js' },
   watch: true,
   plugins: [
-    /**
-     * This plugin assigns the module and chunk ids by occurence count. What this
-     * means is that frequently used IDs will get lower/shorter IDs - so they become
-     * more predictable.
-     */
-    new webpack.optimize.OccurenceOrderPlugin(),
     /**
      * See description in 'webpack.config.dev' for more info.
      */
@@ -39,6 +36,14 @@ module.exports = {
         query: {
           presets: ['es2015', 'react']
         }
+      },
+      {
+        test: /\.css$/,
+        loader: "style-loader!css-loader"
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url'
       }
     ]
   },

@@ -1,3 +1,5 @@
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
+
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { Route, Router, useRouterHistory } from 'react-router';

@@ -37,39 +37,35 @@ class Login extends Component {
     render() {
         const { fields: { username, password }, resetForm, handleSubmit, submitting  } = this.props;
         return (
-            <div>
-                <Navbar />
-                <Container>
-                    <Center>
-                        <div className="panel panel-default">
-                          <div className="panel-heading">
-                            <h3 className="panel-title">Login</h3>
+          <div>
+            <Navbar />
+            <Container>
+              <Center>
+                <div className="panel panel-default">
+                    <div className="panel-heading">
+                      <h3 className="panel-title">Login</h3>
+                    </div>
+                    <div className="panel-body">
+                      <form onSubmit={handleSubmit(this.handleSubmit)}>
+                          <div className="form-group">
+                              <input type="text" className="form-control" placeholder="Username" {...username} />
+                              {username.touched && username.error && <div style={{"color": "red"}}>{username.error}</div>}
                           </div>
-                          <div className="panel-body">
-                            <form onSubmit={handleSubmit(this.handleSubmit)}>
-                                <div className="form-group">
-                                    <div>
-                                        <input type="text" className="form-control" placeholder="Username" {...username} />
-                                    </div>
-                                    {username.touched && username.error && <div style={{"color": "red"}}>{username.error}</div>}
-                                </div>
-                                <div className="form-group">
-                                    <div>
-                                        <input type="password" className="form-control" placeholder="Password" {...password} />
-                                    </div>
-                                    {password.touched && password.error && <div style={{"color": "red"}}>{password.error}</div>}
-                                </div>
-                                <div>
-                                    <button type="submit" className="btn btn-default" disabled={submitting}>
-                                        {submitting ? <i/> : <i/>} {"Login"}
-                                    </button>
-                                </div>
-                            </form>
+                          <div className="form-group">
+                              <input type="password" className="form-control" placeholder="Password" {...password} />
+                              {password.touched && password.error && <div style={{"color": "red"}}>{password.error}</div>}
                           </div>
-                        </div>
-                    </Center>
-                </Container>
-            </div>
+                          <div>
+                              <button type="submit" className="btn btn-default" disabled={submitting}>
+                                  {submitting ? <i/> : <i/>} {"Login"}
+                              </button>
+                          </div>
+                      </form>
+                    </div>
+                </div>
+              </Center>
+            </Container>
+          </div>
         )
     }
 }
