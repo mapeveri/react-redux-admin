@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ReactReduxAdmin  from '../../src';
-import models from './models';
+import { models } from './models';
 
 let divPoint = document.getElementById('app');
 let data = {

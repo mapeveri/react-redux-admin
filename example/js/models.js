@@ -3,7 +3,7 @@ export const models = {
 	"data": [{
 		"model_name": "users",
 		"columns": "username, email, website",
-		"fields": [{
+		"fields": {
 			"name": {
 				"max_length": "250",
 				"type": "char",
@@ -24,6 +24,6 @@ export const models = {
 				"type": "char",
 				"required": false
 			}
-		}]
+		}
 	}]
 }

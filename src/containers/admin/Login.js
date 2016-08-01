@@ -7,6 +7,7 @@ import Center from '../../components/admin/Center';
 import Container from '../../components/admin/Container';
 import Navbar from '../../components/admin/Navbar';
 
+
 export const fields = ['username', 'password'];
 
 const validate = values => {
@@ -38,10 +39,11 @@ class Login extends Component {
     }
 
     render() {
+        let data = this.props.route.data;
         const { fields: { username, password }, resetForm, handleSubmit, submitting  } = this.props;
         return (
           <div>
-            <Navbar />
+            <Navbar name_admin={ data.name_admin } />
             <Container>
               <Center>
                 <div className="panel panel-default">

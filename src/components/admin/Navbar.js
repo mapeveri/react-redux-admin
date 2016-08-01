@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 /*
   Main navbar component
@@ -12,7 +12,7 @@ export default class Navbar extends Component {
         return (
             <div className="container">
                 <div className="navbar navbar-default navbar-static">
-                    <div className="navbar-header" align="centre"><a className="navbar-brand">React redux admin</a></div>
+                    <div className="navbar-header" align="centre"><a className="navbar-brand">{this.props.name_admin}</a></div>
                     <ul className="nav navbar-nav">
                         <li className="active"><a href="/admin">Index</a></li>
                     </ul>
@@ -20,4 +20,8 @@ export default class Navbar extends Component {
             </div>
         );
     }
+}
+
+Navbar.propTypes = {
+  name_admin: PropTypes.string.isRequired
 }
