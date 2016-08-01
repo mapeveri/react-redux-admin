@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+/*
+  Main navbar component
+*/
 export default class Navbar extends Component {
     constructor(props, context) {
       super(props, context);

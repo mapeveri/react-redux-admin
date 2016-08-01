@@ -2,7 +2,8 @@
 export const models = {
 	"data": [{
 		"model_name": "users",
-		"fiedls": [{
+		"columns": "username, email, website",
+		"fields": [{
 			"name": {
 				"max_length": "250",
 				"type": "char",

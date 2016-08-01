@@ -21,6 +21,9 @@ const validate = values => {
     return errors
 }
 
+/*
+  Login page container
+*/
 class Login extends Component {
     constructor(props, context) {
         super(props, context);
