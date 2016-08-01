@@ -42,8 +42,27 @@ export function parseDataAdmin(data){
 export function generateRoutes(data){
   let routes = [];
   data.models.forEach((model, i) => {
-      routes.push(<Route key={i} path={"/" + model} data={data} component={Crud} />);
+      //The data for the model
+      let dataModel = {
+        api: data.api,
+        columns: data.columns[model],
+        fields: data.fields[model],
+        name_admin: data.name_admin,
+        title_crud: model,
+      };
+
+      //Add route
+      routes.push(<Route key={i} path={"/" + model} data={dataModel} component={Crud} />);
   })
 
   return routes;
+}
+
+/*
+  @method: capitalizeFirstLetter
+  @descrip: capitalize the first letter string
+  @param: { string }: String to capitalize
+*/
+export function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }

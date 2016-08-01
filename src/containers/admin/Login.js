@@ -6,7 +6,7 @@ import { reduxForm } from 'redux-form';
 import Center from '../../components/admin/Center';
 import Container from '../../components/admin/Container';
 import Navbar from '../../components/admin/Navbar';
-
+import Panel from '../../components/admin/Panel';
 
 export const fields = ['username', 'password'];
 
@@ -46,11 +46,7 @@ class Login extends Component {
             <Navbar name_admin={ data.name_admin } />
             <Container>
               <Center>
-                <div className="panel panel-default">
-                    <div className="panel-heading">
-                      <h3 className="panel-title">Login</h3>
-                    </div>
-                    <div className="panel-body">
+                  <Panel title={"Login"}>
                       <form onSubmit={handleSubmit(this.handleSubmit)}>
                           <div className="form-group">
                               <input type="text" className="form-control" placeholder="Username" {...username} />
@@ -66,8 +62,7 @@ class Login extends Component {
                               </button>
                           </div>
                       </form>
-                    </div>
-                </div>
+                  </Panel>
               </Center>
             </Container>
           </div>
