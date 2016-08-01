@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { hashHistory } from 'react-router';
 import { reduxForm } from 'redux-form';
 
+import Center from '../../components/admin/Center';
 import Container from '../../components/admin/Container';
 import Navbar from '../../components/admin/Navbar';
 
@@ -39,32 +40,34 @@ class Login extends Component {
             <div>
                 <Navbar />
                 <Container>
-                    <div className="panel panel-default">
-                      <div className="panel-heading">
-                        <h3 className="panel-title">Login</h3>
-                      </div>
-                      <div className="panel-body">
-                        <form onSubmit={handleSubmit(this.handleSubmit)}>
-                            <div>
-                                <div>
-                                    <input type="text" className="form-control" placeholder="Username" {...username} />
+                    <Center>
+                        <div className="panel panel-default">
+                          <div className="panel-heading">
+                            <h3 className="panel-title">Login</h3>
+                          </div>
+                          <div className="panel-body">
+                            <form onSubmit={handleSubmit(this.handleSubmit)}>
+                                <div className="form-group">
+                                    <div>
+                                        <input type="text" className="form-control" placeholder="Username" {...username} />
+                                    </div>
+                                    {username.touched && username.error && <div style={{"color": "red"}}>{username.error}</div>}
                                 </div>
-                                {username.touched && username.error && <div style={{"color": "red"}}>{username.error}</div>}
-                            </div>
-                            <div>
-                                <div>
-                                    <input type="password" className="form-control" placeholder="Password" {...password} />
+                                <div className="form-group">
+                                    <div>
+                                        <input type="password" className="form-control" placeholder="Password" {...password} />
+                                    </div>
+                                    {password.touched && password.error && <div style={{"color": "red"}}>{password.error}</div>}
                                 </div>
-                                {password.touched && password.error && <div style={{"color": "red"}}>{password.error}</div>}
-                            </div>
-                            <div>
-                                <button type="submit" disabled={submitting}>
-                                    {submitting ? <i/> : <i/>} {"Login"}
-                                </button>
-                            </div>
-                        </form>
-                      </div>
-                    </div>
+                                <div>
+                                    <button type="submit" className="btn btn-default" disabled={submitting}>
+                                        {submitting ? <i/> : <i/>} {"Login"}
+                                    </button>
+                                </div>
+                            </form>
+                          </div>
+                        </div>
+                    </Center>
                 </Container>
             </div>
         )
