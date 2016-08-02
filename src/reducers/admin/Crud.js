@@ -1,6 +1,11 @@
 import * as actionsTypes from '../../constants/admin/ActionTypes';
 
-export default function Crud(state = {}, action) {
+const initialState = {
+  data_api: [],
+  pageNum: 0,
+}
+
+export default function Crud(state = initialState, action) {
     switch (action.type){
         case actionsTypes.GET_DATA_API_CRUD:
             let data_api = [];
@@ -17,6 +22,7 @@ export default function Crud(state = {}, action) {
 
             return Object.assign({}, state, {
                 data_api: data_api,
+                pageNum: Math.round(action.totalRecords / action.pagination),
             });
             return state;
         default:

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import ReactPaginate from 'react-paginate';
 import {connect} from 'react-redux';
 import 'whatwg-fetch';
 
@@ -12,10 +13,21 @@ class Grid extends Component {
       super(props, context);
     }
 
+    /*
+      @method: componentDidMount
+      @descrip: To init component
+    */
     componentDidMount() {
-        let columns = this.getColumns();
-        //Obtengo la primera página
-        this.props.getDataApi(this.props.data.api, this.props.data.model, columns);
+      this.getRecords(1);
+    }
+
+    getRecords(page) {
+      let columns = this.getColumns();
+      //Obtengo la primera página
+      this.props.getDataApi(
+          this.props.data.api, this.props.data.model,
+          page, this.props.data.pagination, columns
+      );
     }
 
     /*
@@ -32,9 +44,9 @@ class Grid extends Component {
     /*
       @method: renderColumns
       @descrip: Render data columns
-      @param: columns {array}: columns to render
     */
-    renderColumns(columns) {
+    renderColumns() {
+      let columns = this.getColumns();
       let arrColumns = [];
 
       columns.map((column, i) => {
@@ -64,21 +76,49 @@ class Grid extends Component {
       return records;
     }
 
-    render() {
-        let columns = this.getColumns();
+    /*
+      @method: handlePageClick
+      @descrip: Handle click to pagination
+      @param: pagination {integer} Records for page
+      @param: dataclick {object} data bind in click pagination
+    */
+    handlePageClick(pagination, dataclick) {
+      let columns = this.getColumns();
+      let page = dataclick.selected + 1;
 
+      //Obtengo la primera página
+      this.props.getDataApi(
+          this.props.data.api, this.props.data.model,
+          page, pagination, columns
+      );
+    }
+
+    render() {
         return (
-          <div className="table-responsive">
-            <table className="table">
-              <thead>
-                <tr>
-                  {this.renderColumns(columns)}
-                </tr>
-              </thead>
-              <tbody>
-                {this.renderRecords(this.props.data_api)}
-              </tbody>
-            </table>
+          <div>
+            <div className="table-responsive">
+              <table className="table">
+                <thead>
+                  <tr>
+                    {this.renderColumns()}
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.renderRecords(this.props.data_api)}
+                </tbody>
+              </table>
+            </div>
+            <ReactPaginate previousLabel={"<"}
+               nextLabel={">"}
+               breakLabel={<a href="">...</a>}
+               breakClassName={"break-me"}
+               pageNum={this.props.pageNum}
+               marginPagesDisplayed={2}
+               pageRangeDisplayed={5}
+               clickCallback={this.handlePageClick.bind(this, this.props.data.pagination)}
+               containerClassName={"pagination"}
+               subContainerClassName={"pages pagination"}
+               activeClassName={"active"} />
           </div>
         );
     }
@@ -91,6 +131,7 @@ Grid.propTypes = {
 function mapStateToProps(state) {
     return {
         data_api: state.Crud.data_api,
+        pageNum: state.Crud.pageNum,
     }
 }
 

@@ -30,7 +30,8 @@ export function parseDataAdmin(data){
     name_admin: data.name_admin,
     models: models,
     columns: columns,
-    fields: fields
+    fields: fields,
+    pagination: data.pagination,
   }
 }
 
@@ -50,6 +51,7 @@ export function generateRoutes(data){
         name_admin: data.name_admin,
         title_crud: model,
         model: model,
+        pagination: data.pagination,
       };
 
       //Add route
