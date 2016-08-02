@@ -8,20 +8,29 @@ import Crud from '../containers/admin/Crud';
   @descrip: Function that return one object with:
         api: Api rest
         name_admin: Name administrator
-        models: Object with all models register
-        columns: Object with columns of each model register
-        fields: Object with columns of earch model register
+        models: Object with all models register with the key model.
+        columns: Object with columns of each model register.
+        columns_name: Object with columns name of each model register.
+        fields: Object with columns of earch model register.
+        pagination: Number of pagination for page.
   @params: data {object} data configuration admin
 */
 export function parseDataAdmin(data){
 
   let models = [];
   let columns = {};
+  let columnsName = {};
   let fields = {};
 
+  //Loop for model register
   data.models.data.forEach((item) => {
+    //Add model name to array
     models.push(item.model_name);
+    //Object with columns for key model name
     columns[item.model_name] = item.columns;
+    //Object with columns name for key model name
+    columnsName[item.model_name] = item.columns_name;
+    //Object with fields for key model name
     fields[item.model_name] = item.fields;
   });
 
@@ -30,6 +39,7 @@ export function parseDataAdmin(data){
     name_admin: data.name_admin,
     models: models,
     columns: columns,
+    columnsName: columnsName,
     fields: fields,
     pagination: data.pagination,
   }
@@ -47,6 +57,7 @@ export function generateRoutes(data){
       let dataModel = {
         api: data.api,
         columns: data.columns[model],
+        columnsName: data.columnsName[model],
         fields: data.fields[model],
         name_admin: data.name_admin,
         title_crud: model,

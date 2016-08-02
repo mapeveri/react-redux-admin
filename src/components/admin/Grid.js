@@ -42,11 +42,22 @@ class Grid extends Component {
     }
 
     /*
+      @method: getColumnsName
+      @descrip: Get columnsName crud
+    */
+    getColumnsName() {
+      let columnsName = this.props.data.columnsName;
+      columnsName = columnsName.split(",");
+      columnsName = columnsName.map((s) => { return s.trim() });
+      return columnsName
+    }
+
+    /*
       @method: renderColumns
       @descrip: Render data columns
     */
     renderColumns() {
-      let columns = this.getColumns();
+      let columns = this.getColumnsName();
       let arrColumns = [];
 
       columns.map((column, i) => {
