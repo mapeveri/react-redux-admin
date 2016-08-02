@@ -49,6 +49,7 @@ export function generateRoutes(data){
         fields: data.fields[model],
         name_admin: data.name_admin,
         title_crud: model,
+        model: model,
       };
 
       //Add route

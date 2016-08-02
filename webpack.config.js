@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: {
     a: './src/index.js',
-    b: './example/js/index.js'
+    b: './example/js/index.js',
   },
   output: { path: __dirname, filename: 'build/bundle.js' },
   watch: true,
