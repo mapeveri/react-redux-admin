@@ -13,7 +13,8 @@ export default function Crud(state = initialState, action) {
             action.data.forEach((item) => {
               let record = {};
               for (let key in item) {
-                if(action.columns.indexOf(key) > -1) {
+                //Column required and not id_unique
+                if(action.columns.indexOf(key) > -1 || key == action.id_unique) {
                   record[key] = item[key];
                 }
               }

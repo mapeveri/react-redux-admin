@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import 'whatwg-fetch';
 
 import { getDataApi } from '../../actions/admin';
+import ButtonLink from '../../components/admin/ButtonLink';
 
 /*
   Main navbar component
@@ -26,7 +27,8 @@ class Grid extends Component {
       //Obtengo la primera página
       this.props.getDataApi(
           this.props.data.api, this.props.data.model,
-          page, this.props.data.pagination, columns
+          page, this.props.data.pagination, columns,
+          this.props.data.id_unique
       );
     }
 
@@ -64,6 +66,9 @@ class Grid extends Component {
           arrColumns.push(<th key={i}>{column}</th>);
       });
 
+      //Actions column
+      arrColumns.push(<th key={-1}>{"Actions"}</th>);
+
       return arrColumns;
     }
 
@@ -74,13 +79,29 @@ class Grid extends Component {
     */
     renderRecords(data) {
       let records = [];
+
+      //If has data
       if(data !== undefined){
-        data.map((item, key) => {
+        data.map((item, i) => {
           let record = [];
+
+          //Get id_unique and remove
+          let id_unique = item[this.props.data.id_unique];
+          delete item[this.props.data.id_unique];
+
+          //Load record
           for (let key in item) {
             record.push(<td key={key}> { item[key] } </td>);
           }
-          records.push(<tr> { record} </tr>);
+
+          //Buttons action
+          let urlEdit = "#/" + this.props.data.model + "/" + "edit/" + id_unique;
+          let urlRemove = "#/" + this.props.data.model + "/" + "remove/" + id_unique;
+          let buttonEdit = <td> <ButtonLink link={urlEdit} text={"Edit"} classButton={"default"} /> </td>;
+          let buttonRemove = <td> <ButtonLink link={urlRemove} text={"Remove"} classButton={"danger"} /> </td>;
+
+          //Add record to array records
+          records.push(<tr> { record} {buttonEdit} {buttonRemove} </tr>);
         });
       }
 

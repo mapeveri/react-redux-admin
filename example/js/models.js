@@ -2,6 +2,7 @@
 export const models = {
 	"data": [{
 		"model_name": "users",
+		"id_unique": "id",
 		"columns": "name, username, email, website",
 		"columns_name": "Name, Username, E-mail, Website",
 		"fields": {

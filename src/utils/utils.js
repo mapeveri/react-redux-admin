@@ -5,7 +5,7 @@ import Crud from '../containers/admin/Crud';
 
 /*
   @method: parseDataAdmin
-  @descrip: Function that return one object with:
+  @descrip: Function that return the data object order for model with:
         api: Api rest
         name_admin: Name administrator
         models: Object with all models register with the key model.
@@ -13,6 +13,7 @@ import Crud from '../containers/admin/Crud';
         columns_name: Object with columns name of each model register.
         fields: Object with columns of earch model register.
         pagination: Number of pagination for page.
+        id_unique: Field identifcation unique in model
   @params: data {object} data configuration admin
 */
 export function parseDataAdmin(data){
@@ -21,6 +22,7 @@ export function parseDataAdmin(data){
   let columns = {};
   let columnsName = {};
   let fields = {};
+  let id_unique = {};
 
   //Loop for model register
   data.models.data.forEach((item) => {
@@ -32,6 +34,9 @@ export function parseDataAdmin(data){
     columnsName[item.model_name] = item.columns_name;
     //Object with fields for key model name
     fields[item.model_name] = item.fields;
+    //Id unique for model
+    id_unique[item.model_name] = item.id_unique;
+
   });
 
   return {
@@ -42,6 +47,7 @@ export function parseDataAdmin(data){
     columnsName: columnsName,
     fields: fields,
     pagination: data.pagination,
+    id_unique: id_unique,
   }
 }
 
@@ -63,6 +69,7 @@ export function generateRoutes(data){
         title_crud: model,
         model: model,
         pagination: data.pagination,
+        id_unique: data.id_unique[model],
       };
 
       //Add route
