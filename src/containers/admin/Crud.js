@@ -5,6 +5,7 @@ import Container from '../../components/admin/Container';
 import Grid from '../../components/admin/Grid';
 import Navbar from '../../components/admin/Navbar';
 import Panel from '../../components/admin/Panel';
+import Search from '../../components/admin/Search';
 
 import { capitalizeFirstLetter } from '../../utils/utils';
 
@@ -30,9 +31,14 @@ export default class Crud extends Component {
             <div>
               <Navbar name_admin={ data.name_admin } />
               <Container>
-                  <Panel title={title_crud}>
-                    <ButtonLink link={urlCreate} classButton={"default"} text={"Add record"} />
-                    <div style={{marginTop: "1em"}}>
+                  <Panel title={title_crud} style={{marginBottom: "1em"}}>
+                    <div className="pull-left">
+                      <ButtonLink link={urlCreate} classButton={"default"} text={"Add record"} />
+                    </div>
+                    <div className="pull-right" style={{marginBottom: "1em"}}>
+                      <Search />
+                    </div>
+                    <div>
                       <Grid data={data} />
                     </div>
                   </Panel>

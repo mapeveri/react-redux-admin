@@ -8,7 +8,7 @@ import ButtonLink from '../../components/admin/ButtonLink';
 import Center from '../../components/admin/Center';
 
 /*
-  Main navbar component
+  Grid navbar component
 */
 class Grid extends Component {
     constructor(props, context) {

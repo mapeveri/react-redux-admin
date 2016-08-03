@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 /*
-  Center div component
+  ButtonLink div component
 */
 export default class ButtonLink extends Component {
     constructor(props, context) {
