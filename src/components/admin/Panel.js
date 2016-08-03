@@ -10,7 +10,7 @@ export default class Panel extends Component {
 
     render() {
         return (
-            <div className="panel panel-default">
+            <div className="panel panel-default" style={{width: this.props.width_panel}}>
               <div className="panel-heading">
                 <h3 className="panel-title"> {this.props.title}</h3>
               </div>
@@ -23,5 +23,6 @@ export default class Panel extends Component {
 }
 
 Panel.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  width_panel: PropTypes.string.isRequired,
 }

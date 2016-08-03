@@ -31,7 +31,7 @@ export default class Crud extends Component {
             <div>
               <Navbar name_admin={ data.name_admin } />
               <Container>
-                  <Panel title={title_crud} style={{marginBottom: "1em"}}>
+                  <Panel title={title_crud} width_panel="100%" style={{marginBottom: "1em"}}>
                     <div className="pull-left">
                       <ButtonLink link={urlCreate} classButton={"default"} text={"Add record"} />
                     </div>

@@ -139,7 +139,7 @@ class Grid extends Component {
                 {this.renderRecords(this.props.data_api)}
               </tbody>
             </table>
-            <center classCenter={"col-md-8 col-md-offset-5"}>
+            <center>
               <ReactPaginate previousLabel={"<"}
                  nextLabel={">"}
                  breakLabel={<a href="">...</a>}

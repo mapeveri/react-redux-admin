@@ -10,13 +10,9 @@ export default class Center extends Component {
 
     render() {
         return (
-            <div className={this.props.classCenter}>
+            <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
                 {this.props.children}
             </div>
         );
     }
-}
-
-Center.propTypes = {
-  classCenter: PropTypes.string.isRequired
 }

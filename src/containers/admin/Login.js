@@ -45,8 +45,8 @@ class Login extends Component {
           <div>
             <Navbar name_admin={ data.name_admin } />
             <Container>
-              <Center classCenter={"col-md-5 col-md-offset-3"}>
-                  <Panel title={"Login"}>
+              <Center>
+                  <Panel title={"Login"} width_panel="50%">
                       <form onSubmit={handleSubmit(this.handleSubmit)}>
                           <div className="form-group">
                               <input type="text" className="form-control" placeholder="Username" {...username} />
