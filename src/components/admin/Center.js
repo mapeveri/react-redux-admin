@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 /*
   Center div component
@@ -10,9 +10,13 @@ export default class Center extends Component {
 
     render() {
         return (
-            <div className="col-md-5 col-md-offset-3">
+            <div className={this.props.classCenter}>
                 {this.props.children}
             </div>
         );
     }
+}
+
+Center.propTypes = {
+  classCenter: PropTypes.string.isRequired
 }

@@ -45,7 +45,7 @@ class Login extends Component {
           <div>
             <Navbar name_admin={ data.name_admin } />
             <Container>
-              <Center>
+              <Center classCenter={"col-md-5 col-md-offset-3"}>
                   <Panel title={"Login"}>
                       <form onSubmit={handleSubmit(this.handleSubmit)}>
                           <div className="form-group">

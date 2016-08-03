@@ -12,7 +12,7 @@ export default class Navbar extends Component {
         return (
             <div className="container">
                 <div className="navbar navbar-default navbar-static">
-                    <div className="navbar-header" align="centre"><a className="navbar-brand">{this.props.name_admin}</a></div>
+                    <div className="navbar-header" align="centre"><a href={"/admin"} className="navbar-brand">{this.props.name_admin}</a></div>
                     <ul className="nav navbar-nav">
                         <li className="active"><a href="/admin">Index</a></li>
                     </ul>

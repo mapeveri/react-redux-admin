@@ -5,6 +5,7 @@ import 'whatwg-fetch';
 
 import { getDataApi } from '../../actions/admin';
 import ButtonLink from '../../components/admin/ButtonLink';
+import Center from '../../components/admin/Center';
 
 /*
   Main navbar component
@@ -97,11 +98,11 @@ class Grid extends Component {
           //Buttons action
           let urlEdit = "#/" + this.props.data.model + "/" + "edit/" + id_unique;
           let urlRemove = "#/" + this.props.data.model + "/" + "remove/" + id_unique;
-          let buttonEdit = <td> <ButtonLink link={urlEdit} text={"Edit"} classButton={"default"} /> </td>;
-          let buttonRemove = <td> <ButtonLink link={urlRemove} text={"Remove"} classButton={"danger"} /> </td>;
+          let buttonEdit = <ButtonLink link={urlEdit} text={"Edit"} classButton={"default"} />;
+          let buttonRemove = <ButtonLink link={urlRemove} text={"Remove"} classButton={"danger"} />;
 
           //Add record to array records
-          records.push(<tr> { record} {buttonEdit} {buttonRemove} </tr>);
+          records.push(<tr> { record} <td>{buttonEdit} {buttonRemove}</td> </tr>);
         });
       }
 
@@ -128,29 +129,29 @@ class Grid extends Component {
     render() {
         return (
           <div>
-            <div className="table-responsive">
-              <table className="table">
-                <thead>
-                  <tr>
-                    {this.renderColumns()}
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.renderRecords(this.props.data_api)}
-                </tbody>
-              </table>
-            </div>
-            <ReactPaginate previousLabel={"<"}
-               nextLabel={">"}
-               breakLabel={<a href="">...</a>}
-               breakClassName={"break-me"}
-               pageNum={this.props.pageNum}
-               marginPagesDisplayed={2}
-               pageRangeDisplayed={5}
-               clickCallback={this.handlePageClick.bind(this, this.props.data.pagination)}
-               containerClassName={"pagination"}
-               subContainerClassName={"pages pagination"}
-               activeClassName={"active"} />
+            <table className="table table-bordered table-responsive">
+              <thead>
+                <tr>
+                  {this.renderColumns()}
+                </tr>
+              </thead>
+              <tbody>
+                {this.renderRecords(this.props.data_api)}
+              </tbody>
+            </table>
+            <center classCenter={"col-md-8 col-md-offset-5"}>
+              <ReactPaginate previousLabel={"<"}
+                 nextLabel={">"}
+                 breakLabel={<a href="">...</a>}
+                 breakClassName={"break-me"}
+                 pageNum={this.props.pageNum}
+                 marginPagesDisplayed={2}
+                 pageRangeDisplayed={5}
+                 clickCallback={this.handlePageClick.bind(this, this.props.data.pagination)}
+                 containerClassName={"pagination"}
+                 subContainerClassName={"pages pagination"}
+                 activeClassName={"active"} />
+               </center>
           </div>
         );
     }
