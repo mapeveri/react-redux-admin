@@ -3,6 +3,7 @@ import * as actionsTypes from '../../constants/admin/ActionTypes';
 const initialState = {
   data_api: [],
   pageNum: 0,
+  isFetching: false,
 }
 
 export default function Crud(state = initialState, action) {
@@ -24,6 +25,7 @@ export default function Crud(state = initialState, action) {
             return Object.assign({}, state, {
                 data_api: data_api,
                 pageNum: Math.round(action.totalRecords / action.pagination),
+                isFetching: true,
             });
             return state;
         default:

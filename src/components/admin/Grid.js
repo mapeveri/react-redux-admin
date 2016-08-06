@@ -127,16 +127,18 @@ class Grid extends Component {
     }
 
     render() {
+        const { isFetching } = this.props;
+
         return (
           <div>
             <table className="table table-bordered table-responsive">
               <thead>
                 <tr>
-                  {this.renderColumns()}
+                  {isFetching && this.renderColumns()}
                 </tr>
               </thead>
               <tbody>
-                {this.renderRecords(this.props.data_api)}
+                {isFetching && this.renderRecords(this.props.data_api)}
               </tbody>
             </table>
             <center>
@@ -165,6 +167,7 @@ function mapStateToProps(state) {
     return {
         data_api: state.Crud.data_api,
         pageNum: state.Crud.pageNum,
+        isFetching: state.Crud.isFetching,
     }
 }
 
