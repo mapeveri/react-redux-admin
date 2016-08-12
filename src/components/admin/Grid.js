@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import 'whatwg-fetch';
 
 import { getDataApi } from '../../actions/admin';
+import { getColumns } from '../../utils/utils';
 import ButtonLink from '../../components/admin/ButtonLink';
 import Center from '../../components/admin/Center';
 
@@ -24,24 +25,13 @@ class Grid extends Component {
     }
 
     getRecords(page) {
-      let columns = this.getColumns();
+      let columns = getColumns(this.props.data.columns);
       //Obtengo la primera página
       this.props.getDataApi(
           this.props.data.api, this.props.data.model,
           page, this.props.data.pagination, columns,
           this.props.data.id_unique
       );
-    }
-
-    /*
-      @method: getColumns
-      @descrip: Get columns crud
-    */
-    getColumns() {
-      let columns = this.props.data.columns;
-      columns = columns.split(",");
-      columns = columns.map((s) => { return s.trim() });
-      return columns
     }
 
     /*
@@ -116,7 +106,7 @@ class Grid extends Component {
       @param: dataclick {object} data bind in click pagination
     */
     handlePageClick(pagination, dataclick) {
-      let columns = this.getColumns();
+      let columns = getColumns(this.props.data.columns);
       let page = dataclick.selected + 1;
 
       //Obtengo la primera página

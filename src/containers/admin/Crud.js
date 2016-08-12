@@ -36,7 +36,7 @@ export default class Crud extends Component {
                       <ButtonLink link={urlCreate} classButton={"default"} text={"Add record"} />
                     </div>
                     <div className="pull-right" style={{marginBottom: "1em"}}>
-                      <Search />
+                      <Search data={data} />
                     </div>
                     <div>
                       <Grid data={data} />

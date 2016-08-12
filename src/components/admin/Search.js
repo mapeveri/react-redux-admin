@@ -1,18 +1,53 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+
+import { getDataApi } from '../../actions/admin';
+import { getColumns } from '../../utils/utils';
 
 /*
   Search input crud component
 */
-export default class Search extends Component {
+class Search extends Component {
     constructor(props, context) {
       super(props, context);
     }
 
+    /*
+      @method: onSearch
+      @descrip: To event onSearch in click go
+    */
+    onSearch() {
+      let textSearch = document.getElementById("input_search_component").value;
+      let columns = getColumns(this.props.data.columns);
+
+      //If empty return to page 1
+      if (textSearch === ""){
+        //Obtengo la primera página
+        this.props.dispatch(getDataApi(
+            this.props.data.api, this.props.data.model,
+            1, this.props.data.pagination, columns,
+            this.props.data.id_unique
+        ))
+      }else{
+        //Obtengo la primera página
+        this.props.dispatch(getDataApi(
+            this.props.data.api, this.props.data.model,
+            null, this.props.data.pagination, columns,
+            this.props.data.id_unique, textSearch
+        ))
+      }
+    }
+
     render() {
         return (
-            <div>
-              <input type="search" className="form-control" placeholder="Search" />
+            <div className="form-inline">
+                <input type="search" id="input_search_component"
+                  className="form-control" placeholder="Search" />
+                <input type="button" className="btn btn-default" onClick={this.onSearch.bind(this)} value="Go" />
             </div>
-        );
+
+        )
     }
 }
+
+export default connect()(Search);

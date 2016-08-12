@@ -8,12 +8,22 @@ import * as actionsTypes from '../../constants/admin/ActionTypes';
   @param: pagination {integer}: Configuration of items for pagination
   @param: columns {array}: columns cruds
   @param: id_unique {string}: Field identifcation unique in model
+  @param: textSearch {string}: Text to search in crud
 */
-export function getDataApi(api, model, page, pagination, columns, id_unique) {
+export function getDataApi(api, model, page, pagination, columns, id_unique, textSearch="") {
 
-  let limit = page * pagination;
-  let start = limit - pagination;
-  let url = api + model + "?_start=" + start +  "&_limit=" + limit;
+  let url;
+  let isSearch = false;
+
+  //If its is null, then is searching and get all data for to search
+  if (page === null) {
+    url = api + model;
+    isSearch = true;
+  } else {
+    let limit = page * pagination;
+    let start = limit - pagination;
+    url = api + model + "?_start=" + start +  "&_limit=" + limit;
+  }
 
   return dispatch => {
       fetch(url).then((response) => {
@@ -22,7 +32,7 @@ export function getDataApi(api, model, page, pagination, columns, id_unique) {
           dispatch({
               type: actionsTypes.GET_DATA_API_CRUD, data: data,
               columns: columns, pagination: pagination, totalRecords: totalRecords,
-              id_unique: id_unique
+              id_unique: id_unique, isSearch: isSearch, textSearch: textSearch
           });
         })
       }).catch((ex) => {

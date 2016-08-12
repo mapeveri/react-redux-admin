@@ -82,8 +82,20 @@ export function generateRoutes(data){
 /*
   @method: capitalizeFirstLetter
   @descrip: capitalize the first letter string
-  @param: { string }: String to capitalize
+  @param: string { string }: String to capitalize
 */
 export function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+/*
+  @method: getColumns
+  @descrip: Get columns crud to array
+  @param stringColumns { string }: String columns to array
+*/
+export function getColumns(stringColumns) {
+  let columns = stringColumns;
+  columns = columns.split(",");
+  columns = columns.map((s) => { return s.trim() });
+  return columns;
 }
