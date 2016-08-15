@@ -38,7 +38,7 @@ export default class Crud extends Component {
                     <div className="pull-right" style={{marginBottom: "1em"}}>
                       <Search data={data} />
                     </div>
-                    <div>
+                    <div style={{marginTop: "3em"}}>
                       <Grid data={data} />
                     </div>
                   </Panel>

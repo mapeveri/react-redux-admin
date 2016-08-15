@@ -120,8 +120,8 @@ class Grid extends Component {
         const { isFetching } = this.props;
 
         return (
-          <div>
-            <table className="table table-bordered table-responsive">
+          <div className="table-responsive" style={{overflowX: "initial"}}>
+            <table className="table table-bordered table-striped">
               <thead>
                 <tr>
                   {isFetching && this.renderColumns()}
