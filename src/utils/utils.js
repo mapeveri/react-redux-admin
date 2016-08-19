@@ -3,6 +3,32 @@ import { Route } from 'react-router';
 
 import Crud from '../containers/admin/Crud';
 
+
+/*
+  @method: getSections
+  @descrip: Function that return the sections admin
+  @params: data {object} data configuration admin
+*/
+export function getSections(data) {
+  return Object.keys(data.models);
+}
+
+/*
+  @method: getModels
+  @descrip: Get models of one section
+  @params: data {object} data configuration admin
+           section {string} section to get models
+*/
+export function getModels(data, section) {
+  let models = [];
+  data.models[section].models.forEach((item) => {
+    //Add model name to array
+    models.push(item.model_name);
+  });
+
+  return models;
+}
+
 /*
   @method: parseDataAdmin
   @descrip: Function that return the data object order for model with:
@@ -24,7 +50,7 @@ export function parseDataAdmin(data){
   let fields = {};
   let id_unique = {};
 
-  let sections = Object.keys(data.models);
+  let sections = getSections(data);
   sections.forEach((section) => {
     //Loop for model register
     data.models[section].models.forEach((item) => {

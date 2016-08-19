@@ -7,6 +7,7 @@ import { createHashHistory } from 'history';
 
 import configureStore from './store';
 import Login from './containers/admin/Login';
+import Dashboard from './containers/admin/Dashboard';
 
 import { generateRoutes, parseDataAdmin } from './utils/utils';
 
@@ -33,6 +34,7 @@ export default class ReactReduxAdmin extends Component {
                 <Router history={history}>
                     <Route>
                         <Route path="/" data={data} component={Login} />
+                        <Route path="/dashboard" data={this.props.data} component={Dashboard} />
                         { routes }
                     </Route>
                 </Router>

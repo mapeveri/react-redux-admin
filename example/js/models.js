@@ -1,6 +1,6 @@
 
 export const models = {
-	"users": {
+	"Users": {
 		"models": [{
 			"model_name": "Users",
 			"id_unique": "id",
