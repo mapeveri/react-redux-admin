@@ -24,19 +24,21 @@ export function parseDataAdmin(data){
   let fields = {};
   let id_unique = {};
 
-  //Loop for model register
-  data.models.data.forEach((item) => {
-    //Add model name to array
-    models.push(item.model_name);
-    //Object with columns for key model name
-    columns[item.model_name] = item.columns;
-    //Object with columns name for key model name
-    columnsName[item.model_name] = item.columns_name;
-    //Object with fields for key model name
-    fields[item.model_name] = item.fields;
-    //Id unique for model
-    id_unique[item.model_name] = item.id_unique;
-
+  let sections = Object.keys(data.models);
+  sections.forEach((section) => {
+    //Loop for model register
+    data.models[section].models.forEach((item) => {
+      //Add model name to array
+      models.push(item.model_name);
+      //Object with columns for key model name
+      columns[item.model_name] = item.columns;
+      //Object with columns name for key model name
+      columnsName[item.model_name] = item.columns_name;
+      //Object with fields for key model name
+      fields[item.model_name] = item.fields;
+      //Id unique for model
+      id_unique[item.model_name] = item.id_unique;
+    });
   });
 
   return {
