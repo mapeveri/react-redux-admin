@@ -3,6 +3,13 @@ React-redux-admin
 
 Admin generator for react.js.
 
+Features
+========
+
+1. Crud generator in base to model definition in file json.
+2. Connected with Rest API.
+3. Login and Dashboard separated in sections.
+
 Contribute
 ==========
 
