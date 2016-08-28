@@ -6,9 +6,10 @@ Admin generator for react.js.
 Features
 ========
 
-1. Crud generator in base to model definition in file json.
+1. Crud generator in base to model definition in the file json.
 2. Connected with Rest API.
-3. Login and Dashboard separated in sections.
+3. Login form.
+4. Dashboard separated in sections.
 
 Contribute
 ==========
