@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router';
 
 import Crud from '../containers/admin/Crud';
-
+import FormCrud from '../containers/admin/FormCrud';
 
 /*
   @method: getSections
@@ -100,8 +100,11 @@ export function generateRoutes(data){
         id_unique: data.id_unique[model],
       };
 
-      //Add route
+      //Add route main crud
       routes.push(<Route key={i} path={"/" + model} data={dataModel} component={Crud} />);
+
+      //Add route crud create
+      routes.push(<Route key={i} path={"/" + model + "/add"} data={dataModel} component={FormCrud} />);
   })
 
   return routes;

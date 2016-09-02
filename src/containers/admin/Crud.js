@@ -25,7 +25,7 @@ export default class Crud extends Component {
         let data = this.props.route.data;
         let title_crud = capitalizeFirstLetter(data.title_crud);
         let columns = data.columns;
-        let urlCreate = "#/" + data.model + "/" + "add";
+        let urlCreate = "#/" + data.model.toLowerCase() + "/" + "add";
 
         return (
             <div>

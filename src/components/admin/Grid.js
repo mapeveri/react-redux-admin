@@ -86,8 +86,8 @@ class Grid extends Component {
           }
 
           //Buttons action
-          let urlEdit = "#/" + this.props.data.model + "/" + "edit/" + id_unique;
-          let urlRemove = "#/" + this.props.data.model + "/" + "remove/" + id_unique;
+          let urlEdit = "#/" + this.props.data.model.toLowerCase() + "/" + "edit/" + id_unique;
+          let urlRemove = "#/" + this.props.data.model.toLowerCase() + "/" + "remove/" + id_unique;
           let buttonEdit = <ButtonLink link={urlEdit} text={"Edit"} classButton={"default"} />;
           let buttonRemove = <ButtonLink link={urlRemove} text={"Remove"} classButton={"danger"} />;
 
