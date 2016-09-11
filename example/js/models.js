@@ -10,13 +10,13 @@ export const models = {
 				"name": {
 					"name": "Name",
 					"max_length": "250",
-					"type": "char",
+					"type": "text",
 					"required": true
 				},
 				"username": {
 					"name": "Username",
 					"max_length": "50",
-					"type": "char",
+					"type": "text",
 					"required": true
 				},
 				"email": {
@@ -28,7 +28,7 @@ export const models = {
 				"website": {
 					"name": "Website",
 					"max_length": "250",
-					"type": "char",
+					"type": "text",
 					"required": false
 				}
 			}
@@ -44,7 +44,7 @@ export const models = {
 				"title": {
 					"name": "Title",
 					"max_length": "50",
-					"type": "char",
+					"type": "text",
 					"required": true,
 				},
 				"body": {

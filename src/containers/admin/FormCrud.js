@@ -5,7 +5,7 @@ import Container from '../../components/admin/Container';
 import Navbar from '../../components/admin/Navbar';
 import Panel from '../../components/admin/Panel';
 
-import { capitalizeFirstLetter } from '../../utils/utils';
+import { capitalizeFirstLetter, getField } from '../../utils/utils';
 
 
 /*
@@ -14,6 +14,21 @@ import { capitalizeFirstLetter } from '../../utils/utils';
 export default class FormCrud extends Component {
     constructor(props, context) {
       super(props, context);
+    }
+
+    /*
+    * @method: setFields
+    * @descrip: Set fields crud to form
+    * @param: data {object}: Data crud
+    */
+    setFields(data) {
+      let setForm = [];
+      let fields = data.fields;
+      for(let field in fields) {
+        setForm.push(getField(fields[field], field));
+      }
+
+      return setForm;
     }
 
     render() {
@@ -27,7 +42,8 @@ export default class FormCrud extends Component {
                 <Center>
                   <Panel title={title_form} width_panel="90%" style={{marginBottom: "1em"}}>
                       <form>
-
+                        {this.setFields(data)}
+                        <input type="submit" className="btn btn-default" value={"Send"} />
                       </form>
                   </Panel>
                 </Center>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 
+import Input from '../components/admin/Input';
 import Crud from '../containers/admin/Crud';
 import FormCrud from '../containers/admin/FormCrud';
 
@@ -129,4 +130,25 @@ export function getColumns(stringColumns) {
   columns = columns.split(",");
   columns = columns.map((s) => { return s.trim() });
   return columns;
+}
+
+/*
+ @method: getField
+ @descrip: Get component reference field
+ @param: field {object} field to get component
+ @param: fieldName {string} Field name
+*/
+export function getField(field, fieldName) {
+  let type, max_length, required, id, name, placeholder;
+
+  type = field.type;
+  max_length = field.max_length;
+  required = field.required;
+  id = "id_" + field.name;
+  name = field.name;
+  placeholder = fieldName;
+
+  return <Input type={type} max_length={max_length}
+            required={required} id={id} name={name}
+            placeholder={placeholder} />
 }
