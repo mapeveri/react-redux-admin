@@ -3,6 +3,11 @@ React-redux-admin
 
 Admin generator for react.js.
 
+Status
+======
+
+Developing, is not ready for production.
+
 Features
 ========
 
