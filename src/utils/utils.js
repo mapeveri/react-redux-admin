@@ -139,6 +139,7 @@ export function getColumns(stringColumns) {
  @param: fieldName {string} Field name
 */
 export function getField(field, fieldName) {
+  let HtmlObject;
   let type, max_length, required, id, name, placeholder;
 
   type = field.type;
@@ -148,7 +149,15 @@ export function getField(field, fieldName) {
   name = field.name;
   placeholder = fieldName;
 
-  return <Input type={type} max_length={max_length}
-            required={required} id={id} name={name}
-            placeholder={placeholder} />
+  switch (type.toLowerCase()) {
+    case "textarea":
+      HtmlObject = <textarea name={name} id={id} required={required} placeholder={placeholder}></textarea>;
+      break;
+    default:
+      HtmlObject = <Input type={type} max_length={max_length}
+                required={required} id={id} name={name}
+                placeholder={placeholder} />
+  }
+
+  return HtmlObject;
 }

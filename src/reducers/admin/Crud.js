@@ -46,6 +46,10 @@ export default function Crud(state = initialState, action) {
                 isFetching: true,
             });
             return state;
+        case actionsTypes.SET_FETCHING:
+          return Object.assign({}, state, {
+              isFetching: action.fetching,
+          });
         default:
             return state;
     }

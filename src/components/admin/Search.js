@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
-import { getDataApi } from '../../actions/admin';
+import { getDataApi, setFetching } from '../../actions/admin';
 import { getColumns } from '../../utils/utils';
 
 /*
@@ -19,6 +19,9 @@ class Search extends Component {
     onSearch() {
       let textSearch = document.getElementById("input_search_component").value;
       let columns = getColumns(this.props.data.columns);
+
+      //Set fetching in false to show loading
+      this.props.dispatch(setFetching(false));
 
       //If empty return to page 1
       if (textSearch === ""){

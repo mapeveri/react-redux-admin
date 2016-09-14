@@ -14,7 +14,7 @@ export default class Navbar extends Component {
                 <div className="navbar navbar-default navbar-static">
                     <div className="navbar-header" align="centre"><a href={"/admin"} className="navbar-brand">{this.props.name_admin}</a></div>
                     <ul className="nav navbar-nav">
-                        <li className="active"><a href="/admin">Index</a></li>
+                        <li className="active"><a href="#/dashboard">Dashboard</a></li>
                     </ul>
                 </div>
             </div>

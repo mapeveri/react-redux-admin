@@ -2,8 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import ReactPaginate from 'react-paginate';
 import {connect} from 'react-redux';
 import 'whatwg-fetch';
+import Loading from 'react-loading-animation';
 
-import { getDataApi } from '../../actions/admin';
+import { getDataApi, setFetching } from '../../actions/admin';
 import { getColumns } from '../../utils/utils';
 import ButtonLink from '../../components/admin/ButtonLink';
 import Center from '../../components/admin/Center';
@@ -17,8 +18,8 @@ class Grid extends Component {
     }
 
     /*
-      @method: componentDidMount
-      @descrip: To init component
+    @method: componentDidMount
+    @descrip: To init component
     */
     componentDidMount() {
       this.getRecords(1);
@@ -108,6 +109,8 @@ class Grid extends Component {
     handlePageClick(pagination, dataclick) {
       let columns = getColumns(this.props.data.columns);
       let page = dataclick.selected + 1;
+      //Update fetching to show Loading
+      this.props.setFetching(false);
 
       //Obtengo la primera página
       this.props.getDataApi(
@@ -118,9 +121,9 @@ class Grid extends Component {
 
     render() {
         const { isFetching } = this.props;
-
         return (
           <div className="table-responsive" style={{overflowX: "initial"}}>
+            {!isFetching && <Loading />}
             <table className="table table-bordered table-striped">
               <thead>
                 <tr>
@@ -162,4 +165,4 @@ function mapStateToProps(state) {
 }
 
 //Conect component to redux
-export default connect(mapStateToProps, {getDataApi})(Grid);
+export default connect(mapStateToProps, {getDataApi, setFetching})(Grid);

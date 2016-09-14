@@ -37,6 +37,19 @@ export function getDataApi(api, model, page, pagination, columns, id_unique, tex
         })
       }).catch((ex) => {
         console.log('Error to get records. ' + ex);
-      })
+      });
     }
+}
+
+/*
+  @method: setFetching
+  @descrip: Update isFetching property
+  @param: fetching {object} Value to set
+*/
+export function setFetching(fetching) {
+  return dispatch => {
+    dispatch({
+        type: actionsTypes.SET_FETCHING, fetching: fetching
+    });
+  }
 }
