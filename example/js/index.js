@@ -6,7 +6,7 @@ import models from './models';
 let divPoint = document.getElementById('app');
 let data = {
     models: models,
-    api: 'http://jsonplaceholder.typicode.com/',
+    api: 'http://localhost:5000/',
     name_admin: 'Admin test',
     pagination: 5,
 }

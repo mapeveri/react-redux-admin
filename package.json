@@ -53,6 +53,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "jquery": "^3.1.0",
+    "json-server": "^0.8.21",
     "react": "^15.3.0",
     "react-addons-create-fragment": "^15.3.0",
     "react-dom": "^15.3.0",
