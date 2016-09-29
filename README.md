@@ -13,7 +13,7 @@ Features
 
 1. Crud generator in base to model definition in the file json.
 2. Connected with Rest API.
-3. Login form.
+3. Authentication with automatic admin user.
 4. Dashboard separated in sections.
 
 Contribute
