@@ -25,7 +25,7 @@ export default class FormCrud extends Component {
       let setForm = [];
       let fields = data.fields;
       for(let field in fields) {
-        setForm.push(getField(fields[field], field));
+        setForm.push(getField(fields[field]));
       }
 
       return setForm;

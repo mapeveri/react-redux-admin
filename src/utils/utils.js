@@ -136,9 +136,8 @@ export function getColumns(stringColumns) {
  @method: getField
  @descrip: Get component reference field
  @param: field {object} field to get component
- @param: fieldName {string} Field name
 */
-export function getField(field, fieldName) {
+export function getField(field) {
   let HtmlObject;
   let type, max_length, required, id, name, placeholder;
 
@@ -147,7 +146,7 @@ export function getField(field, fieldName) {
   required = field.required;
   id = "id_" + field.name;
   name = field.name;
-  placeholder = fieldName;
+  placeholder = field.name;
 
   switch (type.toLowerCase()) {
     case "textarea":
