@@ -24,7 +24,7 @@ export default class Input extends Component {
             <label>{this.props.placeholder}</label>
             <input type={this.props.type} name={this.props.name} className={"form-control"}
             id={this.props.id} placeholder={this.props.placeholder} style={{"width": width}}
-            required={this.props.required} max_length={this.props.max_length} />
+            required={this.props.required} max_length={this.props.max_length} value={this.props.value} />
           </div>
         );
     }

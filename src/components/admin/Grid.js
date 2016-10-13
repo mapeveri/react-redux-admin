@@ -71,9 +71,9 @@ class Grid extends Component {
     */
     renderRecords(data) {
       let records = [];
-
+      
       //If has data
-      if(data !== undefined){
+      if(typeof(data) !== "undefined"){
         data.map((item, i) => {
           let record = [];
 

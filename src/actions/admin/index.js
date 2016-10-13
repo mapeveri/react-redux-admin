@@ -53,3 +53,28 @@ export function setFetching(fetching) {
     });
   }
 }
+
+/*
+  @method: getDataRecord
+  @descrip: Get data record id
+  @param: api {string}: url api
+  @param: model {string}: Model
+  @param: id {integer}: Id to filter
+*/
+export function getDataRecord(api, model, id) {
+
+  //Url to get data
+  let url = api + model + "/" + id;
+  
+  return dispatch => {
+      fetch(url).then((response) => {
+        return response.json().then((data) => {
+          dispatch({
+              type: actionsTypes.GET_DATA_RECORD, data: data,
+          });
+        })
+      }).catch((ex) => {
+        console.log('Error to get records. ' + ex);
+      });
+    }
+}

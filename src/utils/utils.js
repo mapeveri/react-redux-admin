@@ -101,11 +101,20 @@ export function generateRoutes(data){
         id_unique: data.id_unique[model],
       };
 
+      let dataModelCreate = dataModel;
+      dataModelCreate['action'] = "c";
+
+      let dataModelUpdate = dataModel;
+      dataModelUpdate['action'] = "e";
+
       //Add route main crud
       routes.push(<Route key={i} path={"/" + model} data={dataModel} component={Crud} />);
 
       //Add route crud create
-      routes.push(<Route key={i} path={"/" + model + "/add"} data={dataModel} component={FormCrud} />);
+      routes.push(<Route key={i} path={"/" + model + "/add"} data={dataModelCreate} component={FormCrud} />);
+
+      //Add route crud edit
+      routes.push(<Route key={i} path={"/" + model + "/edit" + "/:paramId"} data={dataModelUpdate} component={FormCrud} />);
   })
 
   return routes;
@@ -134,12 +143,15 @@ export function getColumns(stringColumns) {
 
 /*
  @method: getField
- @descrip: Get component reference field
+ @descrip: Get component reference field 
  @param: field {object} field to get component
+ @param: isUpdate {boolean} if is form update
+ @param: dataRecord {object} data field
+ @param: fieldNameApi {string} Name field in the api
 */
-export function getField(field) {
+export function getField(field, isUpdate, dataRecord, fieldNameApi) {
   let HtmlObject;
-  let type, max_length, required, id, name, placeholder;
+  let type, max_length, required, id, name, placeholder, value;
 
   type = field.type;
   max_length = field.max_length;
@@ -147,15 +159,21 @@ export function getField(field) {
   id = "id_" + field.name;
   name = field.name;
   placeholder = field.name;
+  value = "";
+  
+  //Load value
+  if (isUpdate) {
+    value = dataRecord[fieldNameApi];
+  }
 
   switch (type.toLowerCase()) {
     case "textarea":
-      HtmlObject = <textarea name={name} id={id} required={required} placeholder={placeholder}></textarea>;
+      HtmlObject = <textarea name={name} id={id} required={required} placeholder={placeholder} value={value}></textarea>;
       break;
     default:
       HtmlObject = <Input type={type} max_length={max_length}
                 required={required} id={id} name={name}
-                placeholder={placeholder} />
+                placeholder={placeholder} value={value} />
   }
 
   return HtmlObject;

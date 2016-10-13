@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import {connect} from 'react-redux';
 
 import Center from '../../components/admin/Center';
 import Container from '../../components/admin/Container';
@@ -6,14 +7,36 @@ import Navbar from '../../components/admin/Navbar';
 import Panel from '../../components/admin/Panel';
 
 import { capitalizeFirstLetter, getField } from '../../utils/utils';
-
+import { getDataRecord } from '../../actions/admin';
 
 /*
   Form Create/Update crud
 */
-export default class FormCrud extends Component {
+class FormCrud extends Component {
     constructor(props, context) {
       super(props, context);
+    }
+
+    /**
+    * @method: componentDidMount
+    * @descrip: To init component
+    */
+    componentDidMount() {
+      this.getRecord();
+    }
+
+    /**
+    * Get record edit mode 
+    */
+    getRecord() {
+      let id = this.props.params.paramId;
+      
+      //If is edit
+      if (typeof(id) !== "undefined") {
+        this.props.getDataRecord(
+          this.props.route.data.api, this.props.route.data.model, id
+        );
+      }
     }
 
     /*
@@ -25,7 +48,11 @@ export default class FormCrud extends Component {
       let setForm = [];
       let fields = data.fields;
       for(let field in fields) {
-        setForm.push(getField(fields[field]));
+        if(data.action == "") {
+          setForm.push(getField(fields[field], false, null, field));
+        } else {
+          setForm.push(getField(fields[field], true, this.props.record, field));
+        }
       }
 
       return setForm;
@@ -33,7 +60,12 @@ export default class FormCrud extends Component {
 
     render() {
       let data = this.props.route.data;
-      let title_form = "Create " + capitalizeFirstLetter(data.title_crud);
+      let title_form = "";
+      if (data.action == "c") {
+        title_form = "Create " + capitalizeFirstLetter(data.title_crud);
+      } else {
+        title_form = "Edit " + capitalizeFirstLetter(data.title_crud);
+      }
 
       return (
           <div>
@@ -56,3 +88,13 @@ export default class FormCrud extends Component {
 FormCrud.propTypes = {
   data: PropTypes.object.isRequired,
 }
+
+function mapStateToProps(state) {
+    return {
+        record: state.Crud.data_api,
+        isFetching: state.Crud.isFetching,
+    }
+}
+
+//Conect component to redux
+export default connect(mapStateToProps, {getDataRecord})(FormCrud);

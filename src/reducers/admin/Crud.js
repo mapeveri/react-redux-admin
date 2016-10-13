@@ -45,10 +45,14 @@ export default function Crud(state = initialState, action) {
                 pageNum: Math.round(action.totalRecords / action.pagination),
                 isFetching: true,
             });
-            return state;
         case actionsTypes.SET_FETCHING:
           return Object.assign({}, state, {
               isFetching: action.fetching,
+          });
+        case actionsTypes.GET_DATA_RECORD:
+          return Object.assign({}, state, {
+              isFetching: true,
+              data_api: action.data,
           });
         default:
             return state;
