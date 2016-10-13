@@ -9,22 +9,27 @@ import { getColumns } from '../../utils/utils';
 import ButtonLink from '../../components/admin/ButtonLink';
 import Center from '../../components/admin/Center';
 
-/*
-  Grid navbar component
+/**
+* Grid navbar component
 */
 class Grid extends Component {
     constructor(props, context) {
       super(props, context);
     }
 
-    /*
-    @method: componentDidMount
-    @descrip: To init component
+    /**
+    * @method: componentDidMount
+    * @description: To init component
     */
     componentDidMount() {
       this.getRecords(1);
     }
 
+    /**
+    * @method: getRecords
+    * @description: Get records to page
+    * @param {integer}: Page to get data
+    */
     getRecords(page) {
       let columns = getColumns(this.props.data.columns);
       //Obtengo la primera página
@@ -35,9 +40,9 @@ class Grid extends Component {
       );
     }
 
-    /*
-      @method: getColumnsName
-      @descrip: Get columnsName crud
+    /**
+    * @method: getColumnsName
+    * @description: Get columnsName crud
     */
     getColumnsName() {
       let columnsName = this.props.data.columnsName;
@@ -46,9 +51,9 @@ class Grid extends Component {
       return columnsName
     }
 
-    /*
-      @method: renderColumns
-      @descrip: Render data columns
+    /**
+    * @method: renderColumns
+    * @description: Render data columns
     */
     renderColumns() {
       let columns = this.getColumnsName();
@@ -64,14 +69,14 @@ class Grid extends Component {
       return arrColumns;
     }
 
-    /*
-      @method: renderRecords
-      @descrip: Render data records
-      @param: data {array}: data to render records
+    /**
+    * @method: renderRecords
+    * @description: Render data records
+    * @param: data {array}: data to render records
     */
     renderRecords(data) {
       let records = [];
-      
+
       //If has data
       if(typeof(data) !== "undefined"){
         data.map((item, i) => {
@@ -100,11 +105,11 @@ class Grid extends Component {
       return records;
     }
 
-    /*
-      @method: handlePageClick
-      @descrip: Handle click to pagination
-      @param: pagination {integer} Records for page
-      @param: dataclick {object} data bind in click pagination
+    /**
+    * @method: handlePageClick
+    * @description: Handle click to pagination
+    * @param: pagination {integer} Records for page
+    * @param: dataclick {object} data bind in click pagination
     */
     handlePageClick(pagination, dataclick) {
       let columns = getColumns(this.props.data.columns);

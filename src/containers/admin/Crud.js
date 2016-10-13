@@ -9,16 +9,12 @@ import Search from '../../components/admin/Search';
 
 import { capitalizeFirstLetter } from '../../utils/utils';
 
-/*
-  Crud container
+/**
+* Crud container
 */
 export default class Crud extends Component {
     constructor(props, context) {
       super(props, context);
-    }
-
-    handlePageClick(data) {
-      let selected = data.selected;
     }
 
     render() {

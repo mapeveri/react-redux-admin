@@ -9,8 +9,8 @@ import Panel from '../../components/admin/Panel';
 import { capitalizeFirstLetter, getField } from '../../utils/utils';
 import { getDataRecord } from '../../actions/admin';
 
-/*
-  Form Create/Update crud
+/**
+* Form Create/Update crud
 */
 class FormCrud extends Component {
     constructor(props, context) {
@@ -19,18 +19,19 @@ class FormCrud extends Component {
 
     /**
     * @method: componentDidMount
-    * @descrip: To init component
+    * @description: To init component
     */
     componentDidMount() {
       this.getRecord();
     }
 
     /**
-    * Get record edit mode 
+    * @method: getRecord
+    * @description: Get record in edit mode
     */
     getRecord() {
       let id = this.props.params.paramId;
-      
+
       //If is edit
       if (typeof(id) !== "undefined") {
         this.props.getDataRecord(
@@ -39,9 +40,9 @@ class FormCrud extends Component {
       }
     }
 
-    /*
+    /**
     * @method: setFields
-    * @descrip: Set fields crud to form
+    * @description: Set fields crud to form
     * @param: data {object}: Data crud
     */
     setFields(data) {

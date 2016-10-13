@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
-/*
-  Center div component
+/**
+* Center div component
 */
 export default class Center extends Component {
     constructor(props, context) {

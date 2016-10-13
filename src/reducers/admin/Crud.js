@@ -8,6 +8,7 @@ const initialState = {
 
 export default function Crud(state = initialState, action) {
     switch (action.type){
+        // To get all data api model
         case actionsTypes.GET_DATA_API_CRUD:
             let data_api = [];
             //Filter data to columns register
@@ -45,10 +46,14 @@ export default function Crud(state = initialState, action) {
                 pageNum: Math.round(action.totalRecords / action.pagination),
                 isFetching: true,
             });
+
+        // Set property isFetching
         case actionsTypes.SET_FETCHING:
           return Object.assign({}, state, {
               isFetching: action.fetching,
           });
+
+        // Get one record of model
         case actionsTypes.GET_DATA_RECORD:
           return Object.assign({}, state, {
               isFetching: true,

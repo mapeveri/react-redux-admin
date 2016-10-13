@@ -4,17 +4,17 @@ import {connect} from 'react-redux';
 import { getDataApi, setFetching } from '../../actions/admin';
 import { getColumns } from '../../utils/utils';
 
-/*
-  Search input crud component
+/**
+* Search input crud component
 */
 class Search extends Component {
     constructor(props, context) {
       super(props, context);
     }
 
-    /*
-      @method: onSearch
-      @descrip: To event onSearch in click go
+    /**
+    *@method: onSearch
+    *@description: To event onSearch in click go
     */
     onSearch() {
       let textSearch = document.getElementById("input_search_component").value;

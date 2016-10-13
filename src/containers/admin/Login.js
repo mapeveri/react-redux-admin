@@ -22,17 +22,17 @@ const validate = values => {
     return errors
 }
 
-/*
-  Login page container
+/**
+* Login page container
 */
 class Login extends Component {
     constructor(props, context) {
         super(props, context);
     }
 
-    /*
-    method: handleSubmit
-    descrip: Submit form
+    /**
+    * @method: handleSubmit
+    * @description: Submit form
     */
     handleSubmit(data, dispatch) {
         //hashHistory.push('/admin/index');

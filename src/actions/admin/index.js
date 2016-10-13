@@ -1,14 +1,15 @@
 import * as actionsTypes from '../../constants/admin/ActionTypes';
 
-/*
-  @method: getDataApi
-  @descrip: Get data api for the cruds
-  @param: api {string}: url api
-  @param: page {integer}: Page to pagination
-  @param: pagination {integer}: Configuration of items for pagination
-  @param: columns {array}: columns cruds
-  @param: id_unique {string}: Field identifcation unique in model
-  @param: textSearch {string}: Text to search in crud
+/**
+*  @method: getDataApi
+*  @description: Get data api for the cruds
+*  @param: api {string}: url api
+*  @param: model {string}: Model to get data
+*  @param: page {integer}: Page to pagination
+*  @param: pagination {integer}: Configuration of items for pagination
+*  @param: columns {array}: columns cruds
+*  @param: id_unique {string}: Field identifcation unique in model
+*  @param: textSearch {string}: Text to search in crud
 */
 export function getDataApi(api, model, page, pagination, columns, id_unique, textSearch="") {
 
@@ -41,10 +42,10 @@ export function getDataApi(api, model, page, pagination, columns, id_unique, tex
     }
 }
 
-/*
-  @method: setFetching
-  @descrip: Update isFetching property
-  @param: fetching {object} Value to set
+/**
+*  @method: setFetching
+*  @description: Update isFetching property
+*  @param: fetching {object} Value to set
 */
 export function setFetching(fetching) {
   return dispatch => {
@@ -54,18 +55,18 @@ export function setFetching(fetching) {
   }
 }
 
-/*
-  @method: getDataRecord
-  @descrip: Get data record id
-  @param: api {string}: url api
-  @param: model {string}: Model
-  @param: id {integer}: Id to filter
+/**
+*  @method: getDataRecord
+*  @description: Get data record id
+*  @param: api {string}: url api
+*  @param: model {string}: Model
+*  @param: id {integer}: Id to filter
 */
 export function getDataRecord(api, model, id) {
 
   //Url to get data
   let url = api + model + "/" + id;
-  
+
   return dispatch => {
       fetch(url).then((response) => {
         return response.json().then((data) => {

@@ -6,16 +6,12 @@ import PanelSections from '../../components/admin/PanelSections';
 
 import { capitalizeFirstLetter } from '../../utils/utils';
 
-/*
-  Crud container
+/**
+* Crud container
 */
 export default class Dashboard extends Component {
     constructor(props, context) {
       super(props, context);
-    }
-
-    handlePageClick(data) {
-      let selected = data.selected;
     }
 
     render() {

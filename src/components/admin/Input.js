@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-/*
-  Input component
+
+/**
+* Input component
 */
 export default class Input extends Component {
     constructor(props, context) {
       super(props, context);
     }
-
-
+    
     render() {
         let width = "";
         let max_length = parseInt(this.props.max_length);

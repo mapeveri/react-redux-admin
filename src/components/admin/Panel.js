@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
-/*
-  Panel div component
+/**
+* Panel div component
 */
 export default class Panel extends Component {
     constructor(props, context) {
