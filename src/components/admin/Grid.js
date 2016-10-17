@@ -8,6 +8,7 @@ import { getDataApi, setFetching } from '../../actions/admin';
 import { getColumns } from '../../utils/utils';
 import ButtonLink from '../../components/admin/ButtonLink';
 import Center from '../../components/admin/Center';
+import Modal from '../../components/admin/Modal';
 
 /**
 * Grid navbar component
@@ -95,14 +96,26 @@ class Grid extends Component {
           let urlEdit = "#/" + this.props.data.model.toLowerCase() + "/" + "edit/" + id_unique;
           let urlRemove = "#/" + this.props.data.model.toLowerCase() + "/" + "remove/" + id_unique;
           let buttonEdit = <ButtonLink link={urlEdit} text={"Edit"} classButton={"default"} />;
-          let buttonRemove = <ButtonLink link={urlRemove} text={"Remove"} classButton={"danger"} />;
+          let buttonRemove = <button type="button" className="btn btn-danger" data-toggle="modal" data-target={"#modal_" + id_unique}>{"Delete"}</button>;
+          let modal = <Modal id={id_unique} title={"Delete"} content={"Do you want to delete the record?"} submit={this.submitDelete.bind(this, id_unique, urlRemove)} />;
 
           //Add record to array records
-          records.push(<tr> { record} <td>{buttonEdit} {buttonRemove}</td> </tr>);
+          records.push(<tr> { record} <td>{buttonEdit} {buttonRemove} {modal}</td> </tr>);
         });
       }
 
       return records;
+    }
+
+    /**
+    * @method: submitDelete
+    * @description: Submit remove item
+    * @param: id {int} id to delete
+    * @param: urlRemove {string} ulr api to remove
+    */
+    submitDelete(id, urlRemove) {
+      console.log("Delete " + id);
+      console.log(urlRemove);
     }
 
     /**

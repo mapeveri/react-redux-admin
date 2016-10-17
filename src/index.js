@@ -1,4 +1,5 @@
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
+import BootstrapJs from 'bootstrap/dist/js/bootstrap.js';
 
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';

@@ -17,6 +17,13 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     }),
+    //Initial jquery
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jquery: "jquery",
+      "windows.jQuery": "jquery",
+      jQuery:"jquery"
+    })
   ],
   module: {
     loaders: [

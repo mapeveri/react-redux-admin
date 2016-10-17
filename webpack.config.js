@@ -24,6 +24,13 @@ module.exports = {
       compressor: {
         warnings: false
       }
+    }),
+    //Initial jquery
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jquery: "jquery",
+      "windows.jQuery": "jquery",
+      jQuery:"jquery"
     })
   ],
   module: {
