@@ -4,6 +4,7 @@ import BootstrapJs from 'bootstrap/dist/js/bootstrap.js';
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { Route, Router, useRouterHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import { createHashHistory } from 'history';
 
 import configureStore from './store';
@@ -13,11 +14,11 @@ import Dashboard from './containers/admin/Dashboard';
 import { generateRoutes, parseDataAdmin } from './utils/utils';
 
 const store = configureStore();
-const history = useRouterHistory(createHashHistory)({ queryKey: false })
-
+const hashHistory = useRouterHistory(createHashHistory)({ queryKey: false })
+const history = syncHistoryWithStore(hashHistory, store);
 
 /*
-  Main component of react-redux-admin
+* Main component of react-redux-admin
 */
 export default class ReactReduxAdmin extends Component {
     constructor(props, context) {

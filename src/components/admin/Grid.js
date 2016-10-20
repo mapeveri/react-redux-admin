@@ -9,6 +9,7 @@ import { getColumns } from '../../utils/utils';
 import ButtonLink from '../../components/admin/ButtonLink';
 import Center from '../../components/admin/Center';
 import Modal from '../../components/admin/Modal';
+import * as actionsTypes from '../../constants/admin/ActionTypes';
 
 /**
 * Grid navbar component
@@ -130,15 +131,15 @@ class Grid extends Component {
       //Update fetching to show Loading
       this.props.setFetching(false);
 
-      //Obtengo la primera página
+      //Get page
       this.props.getDataApi(
           this.props.data.api, this.props.data.model,
-          page, pagination, columns
+          page, pagination, columns, this.props.data.id_unique
       );
     }
 
     render() {
-        const { isFetching } = this.props;
+        const { isFetching, action } = this.props;
         return (
           <div className="table-responsive" style={{overflowX: "initial"}}>
             {!isFetching && <Loading />}
@@ -149,7 +150,7 @@ class Grid extends Component {
                 </tr>
               </thead>
               <tbody>
-                {isFetching && this.renderRecords(this.props.data_api)}
+                {isFetching && action == actionsTypes.GET_DATA_API_CRUD && this.renderRecords(this.props.data_api)}
               </tbody>
             </table>
             <center>
@@ -179,6 +180,7 @@ function mapStateToProps(state) {
         data_api: state.Crud.data_api,
         pageNum: state.Crud.pageNum,
         isFetching: state.Crud.isFetching,
+        action: state.Crud.action,
     }
 }
 
