@@ -8,6 +8,8 @@ import { getDataApi, setFetching } from '../../actions/admin';
 import { getColumns } from '../../utils/utils';
 import ButtonLink from '../../components/admin/ButtonLink';
 import Center from '../../components/admin/Center';
+import Modal from '../../components/admin/Modal';
+import * as actionsTypes from '../../constants/admin/ActionTypes';
 
 /**
 * Grid navbar component
@@ -19,7 +21,7 @@ class Grid extends Component {
 
     /**
     * @method: componentDidMount
-    * @descrip: To init component
+    * @description: To init component
     */
     componentDidMount() {
       this.getRecords(1);
@@ -28,7 +30,7 @@ class Grid extends Component {
     /**
     * @method: getRecords
     * @description: Get records Grid
-    * @param page { number }: Number page
+    * @param page {number}: Number page
     */
     getRecords(page) {
       let columns = getColumns(this.props.data.columns);
@@ -42,7 +44,7 @@ class Grid extends Component {
 
     /**
     * @method: getColumnsName
-    * @descrip: Get columnsName crud
+    * @description: Get columnsName crud
     */
     getColumnsName() {
       let columnsName = this.props.data.columnsName;
@@ -53,7 +55,7 @@ class Grid extends Component {
 
     /**
     * @method: renderColumns
-    * @descrip: Render data columns
+    * @description: Render data columns
     */
     renderColumns() {
       let columns = this.getColumnsName();
@@ -69,14 +71,14 @@ class Grid extends Component {
       return arrColumns;
     }
 
-    /** 
+    /**
     * @method: renderRecords
-    * @descrip: Render data records
+    * @description: Render data records
     * @param: data {array}: data to render records
     */
     renderRecords(data) {
       let records = [];
-      
+
       //If has data
       if(typeof(data) !== "undefined"){
         data.map((item, i) => {
@@ -95,10 +97,11 @@ class Grid extends Component {
           let urlEdit = "#/" + this.props.data.model.toLowerCase() + "/" + "edit/" + id_unique;
           let urlRemove = "#/" + this.props.data.model.toLowerCase() + "/" + "remove/" + id_unique;
           let buttonEdit = <ButtonLink link={urlEdit} text={"Edit"} classButton={"default"} />;
-          let buttonRemove = <ButtonLink link={urlRemove} text={"Remove"} classButton={"danger"} />;
+          let buttonRemove = <button type="button" className="btn btn-danger" data-toggle="modal" data-target={"#modal_" + id_unique}>{"Delete"}</button>;
+          let modal = <Modal id={id_unique} title={"Delete"} content={"Do you want to delete the record?"} submit={this.submitDelete.bind(this, id_unique, urlRemove)} />;
 
           //Add record to array records
-          records.push(<tr> { record} <td>{buttonEdit} {buttonRemove}</td> </tr>);
+          records.push(<tr> { record} <td>{buttonEdit} {buttonRemove} {modal}</td> </tr>);
         });
       }
 
@@ -106,8 +109,19 @@ class Grid extends Component {
     }
 
     /**
+    * @method: submitDelete
+    * @description: Submit remove item
+    * @param: id {int} id to delete
+    * @param: urlRemove {string} ulr api to remove
+    */
+    submitDelete(id, urlRemove) {
+      console.log("Delete " + id);
+      console.log(urlRemove);
+    }
+
+    /**
     * @method: handlePageClick
-    * @descrip: Handle click to pagination
+    * @description: Handle click to pagination
     * @param: pagination {integer} Records for page
     * @param: dataclick {object} data bind in click pagination
     */
@@ -117,15 +131,15 @@ class Grid extends Component {
       //Update fetching to show Loading
       this.props.setFetching(false);
 
-      //Obtengo la primera página
+      //Get page
       this.props.getDataApi(
           this.props.data.api, this.props.data.model,
-          page, pagination, columns
+          page, pagination, columns, this.props.data.id_unique
       );
     }
 
     render() {
-        const { isFetching } = this.props;
+        const { isFetching, action } = this.props;
         return (
           <div className="table-responsive" style={{overflowX: "initial"}}>
             {!isFetching && <Loading />}
@@ -136,7 +150,7 @@ class Grid extends Component {
                 </tr>
               </thead>
               <tbody>
-                {isFetching && this.renderRecords(this.props.data_api)}
+                {isFetching && action == actionsTypes.GET_DATA_API_CRUD && this.renderRecords(this.props.data_api)}
               </tbody>
             </table>
             <center>
@@ -166,6 +180,7 @@ function mapStateToProps(state) {
         data_api: state.Crud.data_api,
         pageNum: state.Crud.pageNum,
         isFetching: state.Crud.isFetching,
+        action: state.Crud.action,
     }
 }
 

@@ -9,9 +9,9 @@ export default class PanelSections extends Component {
       super(props, context);
     }
 
-    /** 
+    /**
     * @method: renderSections
-    * @descrip: List models for section
+    * @description: List models for section
     */
     renderSections() {
       let panels = [];
@@ -34,10 +34,10 @@ export default class PanelSections extends Component {
       return panels;
     }
 
-    /** 
+    /**
     * @method: renderModels
-    * @description: Render models register to panels 
-    * @param: { string } section: Name section
+    * @description: Render models to sections in list-group
+    * @param section {string}: Section to which the models belongs
     */
     renderModels(section) {
       let arrModels = [];

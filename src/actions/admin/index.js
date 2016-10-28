@@ -2,7 +2,7 @@ import * as actionsTypes from '../../constants/admin/ActionTypes';
 
 /**
 * @method: getDataApi
-* @descrip: Get data api for the cruds
+* @description: Get data api for the cruds
 * @param: api {string}: url api
 * @param: page {integer}: Page to pagination
 * @param: pagination {integer}: Configuration of items for pagination
@@ -43,7 +43,7 @@ export function getDataApi(api, model, page, pagination, columns, id_unique, tex
 
 /** 
 * @method: setFetching
-* @descrip: Update isFetching property
+* @description: Update isFetching property
 * @param: fetching {object} Value to set
 */
 export function setFetching(fetching) {
@@ -54,18 +54,18 @@ export function setFetching(fetching) {
   }
 }
 
-/** 
+/**
 * @method: getDataRecord
-* @descrip: Get data record id
+* @description: Get data record id
 * @param: api {string}: url api
 * @param: model {string}: Model
-* @param: id {integer}: Id to filter
+* @param: id {integer}: Id to BiquadFilterNode
 */
 export function getDataRecord(api, model, id) {
 
   //Url to get data
   let url = api + model + "/" + id;
-  
+
   return dispatch => {
       fetch(url).then((response) => {
         return response.json().then((data) => {

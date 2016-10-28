@@ -6,7 +6,7 @@ Admin generator for react.js.
 Current status
 ==============
 
-Developing, is not ready for production.
+Developing (50%), is not ready for production.
 
 Features
 ========
@@ -15,6 +15,13 @@ Features
 2. Connected with Rest API.
 3. Authentication with automatic admin user.
 4. Dashboard separated in sections.
+
+Libraries
+=========
+
+1. React
+2. JQuery
+3. Bootstrap
 
 Contribute
 ==========
@@ -28,5 +35,5 @@ Execute admin
 -------------
 
 1. Run **npm run build** (Compile the admin for production) or **npm run build-dev** (Compile the admin for development).
-2. **node server**: Execute the server node.js.
+2. Execute the server node.js: **node server**.
 3. Visit in your browser: **locahost:5000/admin**.

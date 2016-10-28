@@ -31,8 +31,8 @@ class Login extends Component {
     }
 
     /**
-    * method: handleSubmit
-    * descrip: Submit form
+    * @method: handleSubmit
+    * @description: Submit form
     */
     handleSubmit(data, dispatch) {
         //hashHistory.push('/admin/index');

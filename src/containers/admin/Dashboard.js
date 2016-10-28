@@ -14,10 +14,6 @@ export default class Dashboard extends Component {
       super(props, context);
     }
 
-    handlePageClick(data) {
-      let selected = data.selected;
-    }
-
     render() {
         let data = this.props.route.data;
         return (

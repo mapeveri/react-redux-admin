@@ -17,10 +17,6 @@ export default class Crud extends Component {
       super(props, context);
     }
 
-    handlePageClick(data) {
-      let selected = data.selected;
-    }
-
     render() {
         let data = this.props.route.data;
         let title_crud = capitalizeFirstLetter(data.title_crud);

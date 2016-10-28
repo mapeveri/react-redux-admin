@@ -14,7 +14,7 @@ class Search extends Component {
 
     /**
     * @method: onSearch
-    * @descrip: To event onSearch in click go
+    * @description: To event onSearch in click go
     */
     onSearch() {
       let textSearch = document.getElementById("input_search_component").value;

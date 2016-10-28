@@ -7,7 +7,7 @@ import FormCrud from '../containers/admin/FormCrud';
 
 /**
 * @method: getSections
-* @descrip: Function that return the sections admin
+* @description: Function that return the sections admin
 * @param: data {object} data configuration admin
 */
 export function getSections(data) {
@@ -16,9 +16,9 @@ export function getSections(data) {
 
 /**
 * @method: getModels
-* @descrip: Get models of one section
+* @description: Get models of one section
 * @param: data {object} data configuration admin
-* @param: section {string} section to get models
+* @param section {string} section to get models
 */
 export function getModels(data, section) {
   let models = [];
@@ -32,7 +32,7 @@ export function getModels(data, section) {
 
 /**
 * @method: parseDataAdmin
-* @descrip: Function that return the data object order for model with:
+* @description: Function that return the data object order for model with:
 * @param api {string}: Api rest
 * @param name_admin {string}: Name administrator
 * @param models {object}: Object with all models register with the key model.
@@ -82,7 +82,7 @@ export function parseDataAdmin(data){
 
 /** 
 * @method: generateRoutes
-* @descrip: Generate routes in base to models register
+* @description: Generate routes in base to models register
 * @param: data {object} data configuration admin
 */
 export function generateRoutes(data){
@@ -122,7 +122,7 @@ export function generateRoutes(data){
 
 /**
 * @method: capitalizeFirstLetter
-* @descrip: capitalize the first letter string
+* @description: capitalize the first letter string
 * @param: string { string }: String to capitalize
 */
 export function capitalizeFirstLetter(string) {
@@ -131,7 +131,7 @@ export function capitalizeFirstLetter(string) {
 
 /**
 * @method: getColumns
-* @descrip: Get columns crud to array
+* @description: Get columns crud to array
 * @param stringColumns { string }: String columns to array
 */
 export function getColumns(stringColumns) {
@@ -143,7 +143,7 @@ export function getColumns(stringColumns) {
 
 /**
 * @method: getField
-* @descrip: Get component reference field 
+* @description: Get component reference field
 * @param: field {object} field to get component
 * @param: isUpdate {boolean} if is form update
 * @param: dataRecord {object} data field
@@ -160,7 +160,7 @@ export function getField(field, isUpdate, dataRecord, fieldNameApi) {
   name = field.name;
   placeholder = field.name;
   value = "";
-  
+
   //Load value
   if (isUpdate) {
     value = dataRecord[fieldNameApi];
@@ -168,7 +168,12 @@ export function getField(field, isUpdate, dataRecord, fieldNameApi) {
 
   switch (type.toLowerCase()) {
     case "textarea":
-      HtmlObject = <textarea name={name} id={id} required={required} placeholder={placeholder} value={value}></textarea>;
+      HtmlObject = <div className="form-group">
+        <label> {placeholder} </label>
+        <textarea name={name} id={id} className={"form-control"} rows={4} cols={50} required={required}
+          placeholder={placeholder} value={value}>
+        </textarea>
+      </div>;
       break;
     default:
       HtmlObject = <Input type={type} max_length={max_length}
