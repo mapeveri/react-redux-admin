@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-/*
-  Container bootstrap component
+/**
+* Container bootstrap component
 */
 export default class Container extends Component {
     constructor(props, context) {

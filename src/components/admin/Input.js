@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-/*
-  Input component
+
+/**
+* Input component
 */
 export default class Input extends Component {
     constructor(props, context) {

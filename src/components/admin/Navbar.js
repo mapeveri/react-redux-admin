@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
-/*
-  Main navbar component
+/**
+* Main navbar component
 */
 export default class Navbar extends Component {
     constructor(props, context) {

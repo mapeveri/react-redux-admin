@@ -3,8 +3,8 @@ React-redux-admin
 
 Admin generator for react.js.
 
-Status
-======
+Current status
+==============
 
 Developing, is not ready for production.
 

@@ -5,20 +5,20 @@ import Input from '../components/admin/Input';
 import Crud from '../containers/admin/Crud';
 import FormCrud from '../containers/admin/FormCrud';
 
-/*
-  @method: getSections
-  @descrip: Function that return the sections admin
-  @params: data {object} data configuration admin
+/**
+* @method: getSections
+* @descrip: Function that return the sections admin
+* @param: data {object} data configuration admin
 */
 export function getSections(data) {
   return Object.keys(data.models);
 }
 
-/*
-  @method: getModels
-  @descrip: Get models of one section
-  @params: data {object} data configuration admin
-           section {string} section to get models
+/**
+* @method: getModels
+* @descrip: Get models of one section
+* @param: data {object} data configuration admin
+* @param: section {string} section to get models
 */
 export function getModels(data, section) {
   let models = [];
@@ -30,18 +30,18 @@ export function getModels(data, section) {
   return models;
 }
 
-/*
-  @method: parseDataAdmin
-  @descrip: Function that return the data object order for model with:
-        api: Api rest
-        name_admin: Name administrator
-        models: Object with all models register with the key model.
-        columns: Object with columns of each model register.
-        columns_name: Object with columns name of each model register.
-        fields: Object with columns of earch model register.
-        pagination: Number of pagination for page.
-        id_unique: Field identifcation unique in model
-  @params: data {object} data configuration admin
+/**
+* @method: parseDataAdmin
+* @descrip: Function that return the data object order for model with:
+* @param api {string}: Api rest
+* @param name_admin {string}: Name administrator
+* @param models {object}: Object with all models register with the key model.
+* @param columns {object} Object with columns of each model register.
+* @param columns_name {object}: Object with columns name of each model register.
+* @param fields {object}: Object with columns of earch model register.
+* @param pagination {number}: Number of pagination for page.
+* @param id_unique{number}: Field identifcation unique in model
+* @params: data {object} data configuration admin
 */
 export function parseDataAdmin(data){
 
@@ -80,10 +80,10 @@ export function parseDataAdmin(data){
   }
 }
 
-/*
-  @method: generateRoutes
-  @descrip: Generate routes in base to models register
-  @params: data {object} data configuration admin
+/** 
+* @method: generateRoutes
+* @descrip: Generate routes in base to models register
+* @param: data {object} data configuration admin
 */
 export function generateRoutes(data){
   let routes = [];
@@ -120,19 +120,19 @@ export function generateRoutes(data){
   return routes;
 }
 
-/*
-  @method: capitalizeFirstLetter
-  @descrip: capitalize the first letter string
-  @param: string { string }: String to capitalize
+/**
+* @method: capitalizeFirstLetter
+* @descrip: capitalize the first letter string
+* @param: string { string }: String to capitalize
 */
 export function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-/*
-  @method: getColumns
-  @descrip: Get columns crud to array
-  @param stringColumns { string }: String columns to array
+/**
+* @method: getColumns
+* @descrip: Get columns crud to array
+* @param stringColumns { string }: String columns to array
 */
 export function getColumns(stringColumns) {
   let columns = stringColumns;
@@ -141,13 +141,13 @@ export function getColumns(stringColumns) {
   return columns;
 }
 
-/*
- @method: getField
- @descrip: Get component reference field 
- @param: field {object} field to get component
- @param: isUpdate {boolean} if is form update
- @param: dataRecord {object} data field
- @param: fieldNameApi {string} Name field in the api
+/**
+* @method: getField
+* @descrip: Get component reference field 
+* @param: field {object} field to get component
+* @param: isUpdate {boolean} if is form update
+* @param: dataRecord {object} data field
+* @param: fieldNameApi {string} Name field in the api
 */
 export function getField(field, isUpdate, dataRecord, fieldNameApi) {
   let HtmlObject;

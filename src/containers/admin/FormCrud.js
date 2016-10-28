@@ -9,8 +9,8 @@ import Panel from '../../components/admin/Panel';
 import { capitalizeFirstLetter, getField } from '../../utils/utils';
 import { getDataRecord } from '../../actions/admin';
 
-/*
-  Form Create/Update crud
+/**
+* Form Create/Update crud
 */
 class FormCrud extends Component {
     constructor(props, context) {
@@ -39,7 +39,7 @@ class FormCrud extends Component {
       }
     }
 
-    /*
+    /**
     * @method: setFields
     * @descrip: Set fields crud to form
     * @param: data {object}: Data crud

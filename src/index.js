@@ -15,8 +15,8 @@ const store = configureStore();
 const history = useRouterHistory(createHashHistory)({ queryKey: false })
 
 
-/*
-  Main component of react-redux-admin
+/**
+* Main component of react-redux-admin
 */
 export default class ReactReduxAdmin extends Component {
     constructor(props, context) {

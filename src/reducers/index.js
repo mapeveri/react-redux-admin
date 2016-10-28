@@ -1,6 +1,6 @@
-/*
-Combina los reducers y exporta el reducer principal
-de la app social
+/** 
+* Combina los reducers y exporta el reducer principal
+- de la app social
 */
 import { combineReducers } from 'redux';
 import {reducer as formReducer} from 'redux-form';

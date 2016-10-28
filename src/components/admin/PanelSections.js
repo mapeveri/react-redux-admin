@@ -1,16 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { getModels, getSections } from '../../utils/utils';
-/*
-  Panel div component
+
+/**
+* Panel div component
 */
 export default class PanelSections extends Component {
     constructor(props, context) {
       super(props, context);
     }
 
-    /*
-      @method: renderSections
-      @descrip: List models for section
+    /** 
+    * @method: renderSections
+    * @descrip: List models for section
     */
     renderSections() {
       let panels = [];
@@ -33,6 +34,11 @@ export default class PanelSections extends Component {
       return panels;
     }
 
+    /** 
+    * @method: renderModels
+    * @description: Render models register to panels 
+    * @param: { string } section: Name section
+    */
     renderModels(section) {
       let arrModels = [];
       let models = getModels(this.props.data, section);
