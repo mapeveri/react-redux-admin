@@ -59,6 +59,11 @@ class FormCrud extends Component {
       return setForm;
     }
 
+    handleSubmit(e) {
+      e.preventDefault();
+      //$("#formcrud").validate();
+    }
+
     render() {
       let data = this.props.route.data;
       let title_form = "";
@@ -74,7 +79,7 @@ class FormCrud extends Component {
             <Container>
                 <Center>
                   <Panel title={title_form} width_panel="90%" style={{marginBottom: "1em"}}>
-                      <form>
+                      <form id="formcrud" onSubmit={this.handleSubmit.bind(this)}>
                         {this.setFields(data)}
                         <input type="submit" className="btn btn-default" value={"Send"} />
                       </form>
