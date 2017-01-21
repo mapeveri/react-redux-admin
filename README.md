@@ -6,7 +6,7 @@ Admin generator for react.js.
 Current status
 ==============
 
-Developing (50%), is not ready for production.
+Developing (35%), is not ready for production.
 
 Features
 ========
