@@ -10,7 +10,7 @@ import * as actionsTypes from '../../constants/admin/ActionTypes';
 * @param: id_unique {string}: Field identifcation unique in model
 * @param: textSearch {string}: Text to search in crud
 */
-export function getDataApi(api, model, page, pagination, columns, id_unique, textSearch="") {
+export function getDataApi(api, model, page, pagination, columns, id_unique, textSearch='') {
 
   let url;
   let isSearch = false;
@@ -22,7 +22,7 @@ export function getDataApi(api, model, page, pagination, columns, id_unique, tex
   } else {
     let limit = page * pagination;
     let start = limit - pagination;
-    url = api + model + "?_start=" + start +  "&_limit=" + limit;
+    url = api + model + '?_start=' + start +  '&_limit=' + limit;
   }
 
   return dispatch => {
@@ -64,7 +64,7 @@ export function setFetching(fetching) {
 export function getDataRecord(api, model, id) {
 
   //Url to get data
-  let url = api + model + "/" + id;
+  let url = api + model + '/' + id;
 
   return dispatch => {
       fetch(url).then((response) => {

@@ -27,10 +27,10 @@ module.exports = {
     }),
     //Initial jquery
     new webpack.ProvidePlugin({
-      $: "jquery",
-      jquery: "jquery",
-      "windows.jQuery": "jquery",
-      jQuery:"jquery",
+      $: 'jquery',
+      jquery: 'jquery',
+      'windows.jQuery': 'jquery',
+      jQuery: 'jquery',
     })
   ],
   module: {
@@ -45,7 +45,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: "style-loader!css-loader"
+        loader: 'style-loader!css-loader'
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,

@@ -1,7 +1,7 @@
 import * as actionsTypes from '../../constants/admin/ActionTypes';
 
 const initialState = {
-    username: "",
+    username: '',
     password: 0
 }
 

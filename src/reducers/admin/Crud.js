@@ -4,7 +4,7 @@ const initialState = {
   data_api: [],
   pageNum: 0,
   isFetching: false,
-  action: "",
+  action: '',
 }
 
 export default function Crud(state = initialState, action) {

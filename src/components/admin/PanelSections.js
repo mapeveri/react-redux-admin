@@ -43,7 +43,7 @@ export default class PanelSections extends Component {
       let arrModels = [];
       let models = getModels(this.props.data, section);
       models.forEach((model, i) => {
-        arrModels.push(<a href={"#/" + model.toLowerCase()} className="list-group-item">{model}</a>);
+        arrModels.push(<a href={'#/' + model.toLowerCase()} className="list-group-item">{model}</a>);
       });
 
       return <div className="list-group">

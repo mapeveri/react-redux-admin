@@ -102,19 +102,19 @@ export function generateRoutes(data){
       };
 
       let dataModelCreate = dataModel;
-      dataModelCreate['action'] = "c";
+      dataModelCreate['action'] = 'c';
 
       let dataModelUpdate = dataModel;
-      dataModelUpdate['action'] = "e";
+      dataModelUpdate['action'] = 'e';
 
       //Add route main crud
-      routes.push(<Route key={i} path={"/" + model} data={dataModel} component={Crud} />);
+      routes.push(<Route key={i} path={'/' + model} data={dataModel} component={Crud} />);
 
       //Add route crud create
-      routes.push(<Route key={i} path={"/" + model + "/add"} data={dataModelCreate} component={FormCrud} />);
+      routes.push(<Route key={i} path={'/' + model + '/add'} data={dataModelCreate} component={FormCrud} />);
 
       //Add route crud edit
-      routes.push(<Route key={i} path={"/" + model + "/edit" + "/:paramId"} data={dataModelUpdate} component={FormCrud} />);
+      routes.push(<Route key={i} path={'/' + model + '/edit' + '/:paramId'} data={dataModelUpdate} component={FormCrud} />);
   })
 
   return routes;
@@ -136,7 +136,7 @@ export function capitalizeFirstLetter(string) {
 */
 export function getColumns(stringColumns) {
   let columns = stringColumns;
-  columns = columns.split(",");
+  columns = columns.split(',');
   columns = columns.map((s) => { return s.trim() });
   return columns;
 }
@@ -156,10 +156,10 @@ export function getField(field, isUpdate, dataRecord, fieldNameApi) {
   type = field.type;
   max_length = field.max_length;
   required = field.required;
-  id = "id_" + field.name;
+  id = 'id_' + field.name;
   name = field.name;
   placeholder = field.name;
-  value = "";
+  value = '';
 
   //Load value
   if (isUpdate) {
@@ -167,10 +167,10 @@ export function getField(field, isUpdate, dataRecord, fieldNameApi) {
   }
 
   switch (type.toLowerCase()) {
-    case "textarea":
-      HtmlObject = <div className="form-group">
+    case 'textarea':
+      HtmlObject = <div className='form-group'>
         <label> {placeholder} </label>
-        <textarea name={name} id={id} className={"form-control"} rows={4} cols={50} required={required}
+        <textarea name={name} id={id} className={'form-control'} rows={4} cols={50} required={required}
           placeholder={placeholder} value={value}>
         </textarea>
       </div>;

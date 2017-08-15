@@ -9,21 +9,21 @@ export default class Input extends Component {
     }
     
     render() {
-        let width = "";
+        let width = '';
         let max_length = parseInt(this.props.max_length);
         if(max_length >= 50 && max_length < 80){
-          width = "50%"
+          width = '50%'
         }else if (max_length >= 80 && max_length < 250) {
-          width = "80%";
+          width = '80%';
         }else{
-          width = "100%"
+          width = '100%'
         }
 
         return (
           <div className="form-group">
             <label>{this.props.placeholder}</label>
             <input type={this.props.type} name={this.props.name} className={"form-control"}
-            id={this.props.id} placeholder={this.props.placeholder} style={{"width": width}}
+            id={this.props.id} placeholder={this.props.placeholder} style={{'width': width}}
             required={this.props.required} max_length={this.props.max_length} value={this.props.value} />
           </div>
         );

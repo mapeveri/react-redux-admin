@@ -10,7 +10,7 @@ export default class ButtonLink extends Component {
 
     render() {
         return (
-            <a href={this.props.link} className={"btn btn-" + this.props.classButton }> {this.props.text} </a>
+            <a href={this.props.link} className={'btn btn-' + this.props.classButton }> {this.props.text} </a>
         );
     }
 }

@@ -10,7 +10,7 @@ export default class Center extends Component {
 
     render() {
         return (
-            <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                 {this.props.children}
             </div>
         );

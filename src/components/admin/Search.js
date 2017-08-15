@@ -17,14 +17,14 @@ class Search extends Component {
     * @description: To event onSearch in click go
     */
     onSearch() {
-      let textSearch = document.getElementById("input_search_component").value;
+      let textSearch = document.getElementById('input_search_component').value;
       let columns = getColumns(this.props.data.columns);
 
       //Set fetching in false to show loading
       this.props.dispatch(setFetching(false));
 
       //If empty return to page 1
-      if (textSearch === ""){
+      if (textSearch === ''){
         //Obtengo la primera página
         this.props.dispatch(getDataApi(
             this.props.data.api, this.props.data.model,

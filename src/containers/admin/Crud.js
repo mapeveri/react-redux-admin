@@ -21,20 +21,20 @@ export default class Crud extends Component {
         let data = this.props.route.data;
         let title_crud = capitalizeFirstLetter(data.title_crud);
         let columns = data.columns;
-        let urlCreate = "#/" + data.model.toLowerCase() + "/" + "add";
+        let urlCreate = '#/' + data.model.toLowerCase() + '/' + 'add';
 
         return (
             <div>
               <Navbar name_admin={ data.name_admin } />
               <Container>
-                  <Panel title={title_crud} width_panel="100%" style={{marginBottom: "1em"}}>
+                  <Panel title={title_crud} width_panel="100%" style={{marginBottom: '1em'}}>
                     <div className="pull-left">
                       <ButtonLink link={urlCreate} classButton={"default"} text={"Add record"} />
                     </div>
-                    <div className="pull-right" style={{marginBottom: "1em"}}>
+                    <div className="pull-right" style={{marginBottom: '1em'}}>
                       <Search data={data} />
                     </div>
-                    <div style={{marginTop: "3em"}}>
+                    <div style={{marginTop: '3em'}}>
                       <Grid data={data} />
                     </div>
                   </Panel>

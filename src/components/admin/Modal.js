@@ -18,12 +18,12 @@ export default class Modal extends Component {
 
     render() {
         return (
-          <div className="modal fade" id={"modal_" + this.props.id} tabindex="-1" role="dialog" aria-labelledby={"myModalLabel_" + this.props.id}>
+          <div className="modal fade" id={'modal_' + this.props.id} tabindex="-1" role="dialog" aria-labelledby={'myModalLabel_' + this.props.id}>
               <div className="modal-dialog" role="document">
                 <div className="modal-content">
                   <div className="modal-header">
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 className="modal-title" id={"myModalLabel_" + this.props.id}>{this.props.title}</h4>
+                    <h4 className="modal-title" id={'myModalLabel_' + this.props.id}>{this.props.title}</h4>
                   </div>
                   <div className="modal-body">
                     {this.props.content}

@@ -48,7 +48,7 @@ class Grid extends Component {
     */
     getColumnsName() {
       let columnsName = this.props.data.columnsName;
-      columnsName = columnsName.split(",");
+      columnsName = columnsName.split(',');
       columnsName = columnsName.map((s) => { return s.trim() });
       return columnsName
     }
@@ -80,7 +80,7 @@ class Grid extends Component {
       let records = [];
 
       //If has data
-      if(typeof(data) !== "undefined"){
+      if(typeof(data) !== 'undefined'){
         data.map((item, i) => {
           let record = [];
 
@@ -94,10 +94,10 @@ class Grid extends Component {
           }
 
           //Buttons action
-          let urlEdit = "#/" + this.props.data.model.toLowerCase() + "/" + "edit/" + id_unique;
-          let urlRemove = "#/" + this.props.data.model.toLowerCase() + "/" + "remove/" + id_unique;
+          let urlEdit = '#/' + this.props.data.model.toLowerCase() + '/' + 'edit/' + id_unique;
+          let urlRemove = '#/' + this.props.data.model.toLowerCase() + '/' + 'remove/' + id_unique;
           let buttonEdit = <ButtonLink link={urlEdit} text={"Edit"} classButton={"default"} />;
-          let buttonRemove = <button type="button" className="btn btn-danger" data-toggle="modal" data-target={"#modal_" + id_unique}>{"Delete"}</button>;
+          let buttonRemove = <button type="button" className="btn btn-danger" data-toggle="modal" data-target={'#modal_"' + id_unique}>{"Delete"}</button>;
           let modal = <Modal id={id_unique} title={"Delete"} content={"Do you want to delete the record?"} submit={this.submitDelete.bind(this, id_unique, urlRemove)} />;
 
           //Add record to array records
@@ -115,7 +115,7 @@ class Grid extends Component {
     * @param: urlRemove {string} ulr api to remove
     */
     submitDelete(id, urlRemove) {
-      console.log("Delete " + id);
+      console.log('Delete ' + id);
       console.log(urlRemove);
     }
 
@@ -141,7 +141,7 @@ class Grid extends Component {
     render() {
         const { isFetching, action } = this.props;
         return (
-          <div className="table-responsive" style={{overflowX: "initial"}}>
+          <div className="table-responsive" style={{overflowX: 'initial'}}>
             {!isFetching && <Loading />}
             <table className="table table-bordered table-striped">
               <thead>
