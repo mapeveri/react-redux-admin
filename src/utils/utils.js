@@ -162,20 +162,20 @@ export function getField(field, isUpdate, dataRecord, fieldNameApi) {
 
     //Load value
     if (isUpdate) {
-      value = dataRecord[fieldNameApi];
+        value = dataRecord[fieldNameApi];
     }
 
     switch (type.toLowerCase()) {
         case 'textarea':
             HtmlObject = <div className='form-group'>
                     <label> {placeholder} </label>
-                    <textarea name={name} id={id} ref={name} className={'form-control'} rows={4} cols={50} required={required}
+                    <textarea name={name} id={id} className={'form-control'} rows={4} cols={50} required={required}
                         placeholder={placeholder} defaultValue={value}>
                     </textarea>
                 </div>;
             break;
         default:
-            HtmlObject = <Input type={type} ref={name} max_length={max_length}
+            HtmlObject = <Input type={type} max_length={max_length}
                   required={required} id={id} name={name}
                   placeholder={placeholder} defaultValue={value} />
     }

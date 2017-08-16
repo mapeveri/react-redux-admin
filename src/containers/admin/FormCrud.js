@@ -100,20 +100,20 @@ class FormCrud extends Component {
         let urlBack = '#/' + model;
 
         return (
-          <div>
-            <Navbar name_admin={ data.name_admin } />
-            <Container>
-                <Center>
-                    <Panel title={title_form} width_panel="90%" style={{marginBottom: '1em'}}>
-                        <form id="formcrud" name="formcrud" onSubmit={this.handleSubmit.bind(this)}>
-                            {this.setFields(data)}
-                            <input type="submit" className="btn btn-default" value={"Send"} />
-                            <a href={urlBack} className="btn btn-default">Back to {model}</a>
-                        </form>
-                    </Panel>
-                </Center>
-            </Container>
-          </div>
+            <div>
+                <Navbar name_admin={ data.name_admin } />
+                <Container>
+                    <Center>
+                        <Panel title={title_form} width_panel="90%" style={{marginBottom: '1em'}}>
+                            <form id="formcrud" name="formcrud" onSubmit={this.handleSubmit.bind(this)}>
+                                {this.setFields(data)}
+                                <input type="submit" className="btn btn-default" value={"Send"} />
+                                <a href={urlBack} className="btn btn-default">Back to {model}</a>
+                            </form>
+                        </Panel>
+                    </Center>
+                </Container>
+            </div>
         );
     }
 }
