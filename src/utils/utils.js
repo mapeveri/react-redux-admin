@@ -37,7 +37,6 @@ export function getModels(data, section) {
 * @param name_admin {string}: Name administrator
 * @param models {object}: Object with all models register with the key model.
 * @param columns {object} Object with columns of each model register.
-* @param columns_name {object}: Object with columns name of each model register.
 * @param fields {object}: Object with columns of earch model register.
 * @param pagination {number}: Number of pagination for page.
 * @param id_unique{number}: Field identifcation unique in model
@@ -58,8 +57,6 @@ export function parseDataAdmin(data){
         models.push(item.model_name);
         //Object with columns for key model name
         columns[item.model_name] = item.columns;
-        //Object with columns name for key model name
-        columnsName[item.model_name] = item.columns_name;
         //Object with fields for key model name
         fields[item.model_name] = item.fields;
         //Id unique for model
@@ -72,7 +69,6 @@ export function parseDataAdmin(data){
         name_admin: data.name_admin,
         models: models,
         columns: columns,
-        columnsName: columnsName,
         fields: fields,
         pagination: data.pagination,
         id_unique: id_unique,
@@ -91,7 +87,6 @@ export function generateRoutes(data){
       let dataModel = {
         api: data.api,
         columns: data.columns[model],
-        columnsName: data.columnsName[model],
         fields: data.fields[model],
         name_admin: data.name_admin,
         title_crud: model,
@@ -143,12 +138,15 @@ export function getColumns(stringColumns) {
 /**
 * @method: getColumnsName
 * @description: Get columns crud to array
-* @param columnsName { string }: String columns to array
+* @param columnsName { string }: Array fields
 */
-export function getColumnsName(columnsName) {
-    columnsName = columnsName.split(',');
-    columnsName = columnsName.map((s) => { return s.trim() });
-    return columnsName;
+export function getColumnsName(fields) {
+    let arrColumns = [];
+    for(let field in fields) {
+        let i = Object.keys(fields).indexOf(field);
+        arrColumns.push(<th key={i}>{fields[field].name}</th>);
+    }
+    return arrColumns;
 }
 
 /**

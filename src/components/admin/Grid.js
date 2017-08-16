@@ -47,13 +47,7 @@ class Grid extends Component {
     * @description: Render data columns
     */
     renderColumns() {
-        let columns = getColumnsName(this.props.data.columnsName);
-        let arrColumns = [];
-
-        columns.map((column, i) => {
-            arrColumns.push(<th key={i}>{column}</th>);
-        });
-
+        let arrColumns = getColumnsName(this.props.data.fields);
         //Actions column
         arrColumns.push(<th key={-1}>{"Actions"}</th>);
 
@@ -86,7 +80,8 @@ class Grid extends Component {
 
                 //Buttons action
                 let urlEdit = '#/' + this.props.data.model.toLowerCase() + '/' + 'edit/' + id_unique;
-                let urlRemove = '/' + this.props.data.model.toLowerCase() + '/' + id_unique;
+                let urlRemove = this.props.data.api + this.props.data.model.toLowerCase() + '/' + id_unique;
+
                 let buttonEdit = <ButtonLink link={urlEdit} text={"Edit"} classButton={"default"} />;
                 let buttonRemove = <button type="button" className="btn btn-danger" data-toggle="modal" data-target={'#modal_' + id_unique}>{"Delete"}</button>;
                 let modal = <Modal id={id_unique} title={"Delete"} content={"Do you want to delete the record?"} submit={this.submitDelete.bind(this, id_unique, urlRemove)} />;
