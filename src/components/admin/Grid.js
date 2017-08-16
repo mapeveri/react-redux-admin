@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import 'whatwg-fetch';
 import Loading from 'react-loading-animation';
 
-import { getDataApi, setFetching } from '../../actions/admin';
+import { getDataApi, setFetching, deleteRecord } from '../../actions/admin';
 import { getColumns } from '../../utils/utils';
 import ButtonLink from '../../components/admin/ButtonLink';
 import Center from '../../components/admin/Center';
@@ -85,8 +85,8 @@ class Grid extends Component {
           let record = [];
 
           //Get id_unique and remove
-          let id_unique = item[this.props.data.id_unique];
-          delete item[this.props.data.id_unique];
+          let id_unique = item['pk'];
+          delete item['pk'];
 
           //Load record
           for (let key in item) {
@@ -95,9 +95,9 @@ class Grid extends Component {
 
           //Buttons action
           let urlEdit = '#/' + this.props.data.model.toLowerCase() + '/' + 'edit/' + id_unique;
-          let urlRemove = '#/' + this.props.data.model.toLowerCase() + '/' + 'remove/' + id_unique;
+          let urlRemove = '/' + this.props.data.model.toLowerCase() + '/' + id_unique;
           let buttonEdit = <ButtonLink link={urlEdit} text={"Edit"} classButton={"default"} />;
-          let buttonRemove = <button type="button" className="btn btn-danger" data-toggle="modal" data-target={'#modal_"' + id_unique}>{"Delete"}</button>;
+          let buttonRemove = <button type="button" className="btn btn-danger" data-toggle="modal" data-target={'#modal_' + id_unique}>{"Delete"}</button>;
           let modal = <Modal id={id_unique} title={"Delete"} content={"Do you want to delete the record?"} submit={this.submitDelete.bind(this, id_unique, urlRemove)} />;
 
           //Add record to array records
@@ -115,8 +115,9 @@ class Grid extends Component {
     * @param: urlRemove {string} ulr api to remove
     */
     submitDelete(id, urlRemove) {
-      console.log('Delete ' + id);
-      console.log(urlRemove);
+      $('#modal_' + id).modal('hide');
+      this.props.deleteRecord(urlRemove);
+      this.getRecords(1);
     }
 
     /**
@@ -185,4 +186,4 @@ function mapStateToProps(state) {
 }
 
 //Conect component to redux
-export default connect(mapStateToProps, {getDataApi, setFetching})(Grid);
+export default connect(mapStateToProps, {getDataApi, setFetching, deleteRecord})(Grid);

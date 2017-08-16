@@ -2,7 +2,7 @@ export const modelsPosts = {
 	"Blog": {
 		"models": [{
 			"model_name": "Posts",
-			"id_unique": "id",
+			"id_unique": "_id",
 			"columns": "title, body",
 			"columns_name": "Title, Body",
 			"fields": {

@@ -2,7 +2,7 @@ export const modelsUsers = {
 	"Users": {
 		"models": [{
 			"model_name": "Users",
-			"id_unique": "id",
+			"id_unique": "_id",
 			"columns": "name, username, email, website",
 			"columns_name": "Name, Username, E-mail, Website",
 			"fields": {

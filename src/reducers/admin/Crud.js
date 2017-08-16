@@ -18,7 +18,11 @@ export default function Crud(state = initialState, action) {
               for (let key in item) {
                 //Column required and not include id_unique
                 if(action.columns.indexOf(key) > -1 || key == action.id_unique) {
-                  record[key] = item[key];
+                  if(key == action.id_unique) {
+                    record['pk'] = item[key];
+                  } else {
+                    record[key] = item[key];
+                  }
                 }
               }
               data_api.push(record);
@@ -58,6 +62,13 @@ export default function Crud(state = initialState, action) {
 
         // Get one record of model
         case actionsTypes.GET_DATA_RECORD:
+          return Object.assign({}, state, {
+              isFetching: true,
+              data_api: action.data,
+              action: action.type,
+          });
+        // To delete record
+        case actionsTypes.DELETE_RECORD:
           return Object.assign({}, state, {
               isFetching: true,
               data_api: action.data,

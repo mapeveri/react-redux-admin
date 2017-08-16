@@ -11,7 +11,7 @@ import FormCrud from '../containers/admin/FormCrud';
 * @param: data {object} data configuration admin
 */
 export function getSections(data) {
-  return Object.keys(data.models);
+    return Object.keys(data.models);
 }
 
 /**
@@ -21,13 +21,13 @@ export function getSections(data) {
 * @param section {string} section to get models
 */
 export function getModels(data, section) {
-  let models = [];
-  data.models[section].models.forEach((item) => {
-    //Add model name to array
-    models.push(item.model_name);
-  });
+    let models = [];
+    data.models[section].models.forEach((item) => {
+        //Add model name to array
+        models.push(item.model_name);
+    });
 
-  return models;
+    return models;
 }
 
 /**
@@ -44,39 +44,38 @@ export function getModels(data, section) {
 * @params: data {object} data configuration admin
 */
 export function parseDataAdmin(data){
+    let models = [];
+    let columns = {};
+    let columnsName = {};
+    let fields = {};
+    let id_unique = {};
 
-  let models = [];
-  let columns = {};
-  let columnsName = {};
-  let fields = {};
-  let id_unique = {};
-
-  let sections = getSections(data);
-  sections.forEach((section) => {
-    //Loop for model register
-    data.models[section].models.forEach((item) => {
-      //Add model name to array
-      models.push(item.model_name);
-      //Object with columns for key model name
-      columns[item.model_name] = item.columns;
-      //Object with columns name for key model name
-      columnsName[item.model_name] = item.columns_name;
-      //Object with fields for key model name
-      fields[item.model_name] = item.fields;
-      //Id unique for model
-      id_unique[item.model_name] = item.id_unique;
-    });
+    let sections = getSections(data);
+    sections.forEach((section) => {
+        //Loop for model register
+        data.models[section].models.forEach((item) => {
+        //Add model name to array
+        models.push(item.model_name);
+        //Object with columns for key model name
+        columns[item.model_name] = item.columns;
+        //Object with columns name for key model name
+        columnsName[item.model_name] = item.columns_name;
+        //Object with fields for key model name
+        fields[item.model_name] = item.fields;
+        //Id unique for model
+        id_unique[item.model_name] = item.id_unique;
+        });
   });
 
   return {
-    api: data.api,
-    name_admin: data.name_admin,
-    models: models,
-    columns: columns,
-    columnsName: columnsName,
-    fields: fields,
-    pagination: data.pagination,
-    id_unique: id_unique,
+        api: data.api,
+        name_admin: data.name_admin,
+        models: models,
+        columns: columns,
+        columnsName: columnsName,
+        fields: fields,
+        pagination: data.pagination,
+        id_unique: id_unique,
   }
 }
 
@@ -135,10 +134,10 @@ export function capitalizeFirstLetter(string) {
 * @param stringColumns { string }: String columns to array
 */
 export function getColumns(stringColumns) {
-  let columns = stringColumns;
-  columns = columns.split(',');
-  columns = columns.map((s) => { return s.trim() });
-  return columns;
+    let columns = stringColumns;
+    columns = columns.split(',');
+    columns = columns.map((s) => { return s.trim() });
+    return columns;
 }
 
 /**
@@ -150,36 +149,36 @@ export function getColumns(stringColumns) {
 * @param: fieldNameApi {string} Name field in the api
 */
 export function getField(field, isUpdate, dataRecord, fieldNameApi) {
-  let HtmlObject;
-  let type, max_length, required, id, name, placeholder, value;
+    let HtmlObject;
+    let type, max_length, required, id, name, placeholder, value;
 
-  type = field.type;
-  max_length = field.max_length;
-  required = field.required;
-  id = 'id_' + field.name;
-  name = field.name;
-  placeholder = field.name;
-  value = '';
+    type = field.type;
+    max_length = field.max_length;
+    required = field.required;
+    id = 'id_' + fieldNameApi;
+    name = fieldNameApi;
+    placeholder = field.name;
+    value = '';
 
-  //Load value
-  if (isUpdate) {
-    value = dataRecord[fieldNameApi];
-  }
+    //Load value
+    if (isUpdate) {
+      value = dataRecord[fieldNameApi];
+    }
 
-  switch (type.toLowerCase()) {
-    case 'textarea':
-      HtmlObject = <div className='form-group'>
-        <label> {placeholder} </label>
-        <textarea name={name} id={id} className={'form-control'} rows={4} cols={50} required={required}
-          placeholder={placeholder} value={value}>
-        </textarea>
-      </div>;
-      break;
-    default:
-      HtmlObject = <Input type={type} max_length={max_length}
-                required={required} id={id} name={name}
-                placeholder={placeholder} value={value} />
-  }
+    switch (type.toLowerCase()) {
+        case 'textarea':
+            HtmlObject = <div className='form-group'>
+                    <label> {placeholder} </label>
+                    <textarea name={name} id={id} ref={name} className={'form-control'} rows={4} cols={50} required={required}
+                        placeholder={placeholder} defaultValue={value}>
+                    </textarea>
+                </div>;
+            break;
+        default:
+            HtmlObject = <Input type={type} ref={name} max_length={max_length}
+                  required={required} id={id} name={name}
+                  placeholder={placeholder} defaultValue={value} />
+    }
 
-  return HtmlObject;
+    return HtmlObject;
 }
