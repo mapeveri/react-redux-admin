@@ -56,14 +56,9 @@ export function setFetching(fetching) {
 /**
 * @method: getDataRecord
 * @description: Get data record id
-* @param: api {string}: url api
-* @param: model {string}: Model
-* @param: id {integer}: Id to BiquadFilterNode
+* @param: url {string}: url api
 */
-export function getDataRecord(api, model, id) {
-    //Url to get data
-    let url = api + model + '/' + id;
-
+export function getDataRecord(url) {
     return dispatch => {
         fetch(url).then((response) => {
             return response.json().then((data) => {
@@ -81,14 +76,10 @@ export function getDataRecord(api, model, id) {
 /**
 * @method: insertRecord
 * @description: Insert new record
-* @param: api {string}: url api
-* @param: model {string}: Model
+* @param: url {string}: url api
 * @param: params {object}: Data form to insert
 */
-export function insertRecord(api, model, params) {
-
-    //Url to get data
-    let url = api + model;
+export function insertRecord(url, params) {
     return dispatch => {
         fetch(url, {
             method: 'POST',
@@ -112,15 +103,10 @@ export function insertRecord(api, model, params) {
 /**
 * @method: updateRecord
 * @description: Update record
-* @param: api {string}: url api
-* @param: id {string}: id to update
-* @param: model {string}: Model
+* @param: url {string}: url api
 * @param: params {object}: Data form to insert
 */
-export function updateRecord(api, id, model, params) {
-
-    //Url to get data
-    let url = api + model + '/' + id;
+export function updateRecord(url, params) {
     return dispatch => {
         fetch(url, {
             method: 'PUT',

@@ -26,17 +26,24 @@ class FormCrud extends Component {
     }
 
     /**
+    * @method: isUpdate 
+    * @description: Check if is update
+    */
+    isUpdate() {
+        return this.props.params.paramId !== undefined;
+    }
+
+    /**
     * @method: getRecord
     * @description: Get record in edit mode
     */
     getRecord() {
         let id = this.props.params.paramId;
-
+        //Url to get data
+        let url = this.props.route.data.api + this.props.route.data.model + '/' + id;
         //If is edit
-        if (typeof(id) !== 'undefined') {
-            this.props.getDataRecord(
-                this.props.route.data.api, this.props.route.data.model, id
-            );
+        if (this.isUpdate()) {
+            this.props.getDataRecord(url);
         }
     }
 
@@ -49,10 +56,10 @@ class FormCrud extends Component {
         let setForm = [];
         let fields = data.fields;
         for(let field in fields) {
-            if(data.action == '') {
-                setForm.push(getField(fields[field], false, null, field));
-            } else {
+            if(this.isUpdate()) {
                 setForm.push(getField(fields[field], true, this.props.record, field));
+            } else {
+                setForm.push(getField(fields[field], false, null, field));
             }
         }
 
@@ -61,7 +68,6 @@ class FormCrud extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        //$("#formcrud").validate();
         let data = {};
         let fields = this.props.route.data.fields;
         let values = e.target;
@@ -70,30 +76,27 @@ class FormCrud extends Component {
             data[field] = values[field].value;
         };
         
-        //If is create
-        if (this.props.params.paramId === undefined) {
-            this.props.insertRecord(
-                this.props.route.data.api, this.props.route.data.model, JSON.stringify(data)
-            )
+        //If is update
+        if (this.isUpdate()) {
+            let url = this.props.route.data.api + this.props.route.data.model + '/' + this.props.params.paramId;
+            this.props.updateRecord(url, JSON.stringify(data));
+            location.href = '#/' + this.props.route.data.model.toLocaleLowerCase();
+        } else {
+            //Is create
+            let url = this.props.route.data.api + this.props.route.data.model
+            this.props.insertRecord(url, JSON.stringify(data));
             //Clear form
             document.forms[0].reset();
-        } else {
-            //Is update
-            this.props.updateRecord(
-                this.props.route.data.api, this.props.params.paramId, this.props.route.data.model, JSON.stringify(data)
-            )
-
-            location.href = '#/' + this.props.route.data.model.toLocaleLowerCase();
         }
     }
 
     render() {
         let data = this.props.route.data;
         let title_form = '';
-        if (data.action == 'c') {
-            title_form = 'Create ' + capitalizeFirstLetter(data.title_crud);
-        } else {
+        if (this.isUpdate()) {
             title_form = 'Edit ' + capitalizeFirstLetter(data.title_crud);
+        } else {
+            title_form = 'Create ' + capitalizeFirstLetter(data.title_crud);
         }
 
         let model = data.model.toLocaleLowerCase();
@@ -106,20 +109,20 @@ class FormCrud extends Component {
                     <Center>
                         <Panel title={title_form} width_panel="90%" style={{marginBottom: '1em'}}>
                             <form id="formcrud" name="formcrud" onSubmit={this.handleSubmit.bind(this)}>
-                                {this.setFields(data)}
+                                {this.props.isFetching && this.setFields(data)}
                                 <input type="submit" className="btn btn-default" value={"Send"} />
                                 <a href={urlBack} className="btn btn-default">Back to {model}</a>
                             </form>
                         </Panel>
                     </Center>
-                </Container>
+                </Container>    
             </div>
         );
     }
 }
 
 FormCrud.propTypes = {
-    data: PropTypes.object.isRequired,
+    data: PropTypes.object
 }
 
 function mapStateToProps(state) {

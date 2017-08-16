@@ -40,7 +40,7 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'es2016', 'es2017', 'react']
         }
       },
       {

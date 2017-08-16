@@ -6,7 +6,7 @@ import { getModels, getSections } from '../../utils/utils';
 */
 export default class PanelSections extends Component {
     constructor(props, context) {
-      super(props, context);
+        super(props, context);
     }
 
     /**
@@ -14,24 +14,24 @@ export default class PanelSections extends Component {
     * @description: List models for section
     */
     renderSections() {
-      let panels = [];
-      let sections = getSections(this.props.data)
-      sections.forEach((section) => {
-        panels.push(<div key={section} className="panel panel-default">
-          <div className="panel-heading">
-            <h4 className="panel-title">
-              { section }
-            </h4>
-          </div>
-          <div className="panel">
-            <div className="panel-body">
-              { this.renderModels(section) }
+        let panels = [];
+        let sections = getSections(this.props.data)
+        sections.forEach((section) => {
+            panels.push(<div key={section} className="panel panel-default">
+            <div className="panel-heading">
+                <h4 className="panel-title">
+                { section }
+                </h4>
             </div>
-          </div>
-        </div>);
-      });
+            <div className="panel">
+                <div className="panel-body">
+                { this.renderModels(section) }
+                </div>
+            </div>
+            </div>);
+        });
 
-      return panels;
+        return panels;
     }
 
     /**
@@ -40,15 +40,15 @@ export default class PanelSections extends Component {
     * @param section {string}: Section to which the models belongs
     */
     renderModels(section) {
-      let arrModels = [];
-      let models = getModels(this.props.data, section);
-      models.forEach((model, i) => {
-        arrModels.push(<a href={'#/' + model.toLowerCase()} className="list-group-item">{model}</a>);
-      });
+        let arrModels = [];
+        let models = getModels(this.props.data, section);
+        models.forEach((model, i) => {
+            arrModels.push(<a href={'#/' + model.toLowerCase()} className="list-group-item">{model}</a>);
+        });
 
-      return <div className="list-group">
-          {arrModels}
-      </div>
+        return <div className="list-group">
+            {arrModels}
+        </div>
     }
 
     render() {
@@ -61,5 +61,5 @@ export default class PanelSections extends Component {
 }
 
 PanelSections.propTypes = {
-  data: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
 }

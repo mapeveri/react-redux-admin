@@ -11,7 +11,7 @@ import { capitalizeFirstLetter } from '../../utils/utils';
 */
 export default class Dashboard extends Component {
     constructor(props, context) {
-      super(props, context);
+        super(props, context);
     }
 
     render() {
@@ -28,5 +28,5 @@ export default class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-  data: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
 }

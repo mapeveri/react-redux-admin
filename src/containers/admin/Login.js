@@ -26,34 +26,34 @@ class Login extends Component {
     render() {
         let data = this.props.route.data;
         return (
-          <div>
-            <Navbar name_admin={ data.name_admin } />
-            <Container>
-              <Center>
-                  <Panel title={"Login"} width_panel="50%">
-                      <form onSubmit={this.handleSubmit}>
-                          <div className="form-group">
-                              <input type="text" className="form-control" placeholder="Username" />
-                          </div>
-                          <div className="form-group">
-                              <input type="password" className="form-control" placeholder="Password"/>
-                          </div>
-                          <div>
-                              <button type="submit" className="btn btn-default">
-                                  {"Login"}
-                              </button>
-                          </div>
-                      </form>
-                  </Panel>
-              </Center>
-            </Container>
-          </div>
+            <div>
+                <Navbar name_admin={ data.name_admin } />
+                <Container>
+                <Center>
+                    <Panel title={"Login"} width_panel="50%">
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="form-group">
+                                <input type="text" className="form-control" placeholder="Username" />
+                            </div>
+                            <div className="form-group">
+                                <input type="password" className="form-control" placeholder="Password"/>
+                            </div>
+                            <div>
+                                <button type="submit" className="btn btn-default">
+                                    {"Login"}
+                                </button>
+                            </div>
+                        </form>
+                    </Panel>
+                </Center>
+                </Container>
+            </div>
         )
     }
 }
 
 Login.propTypes = {
-  fields: PropTypes.object.isRequired,
+    fields: PropTypes.object.isRequired,
 }
 
 //Conect component to redux

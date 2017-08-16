@@ -5,7 +5,7 @@ import 'whatwg-fetch';
 import Loading from 'react-loading-animation';
 
 import { getDataApi, setFetching, deleteRecord } from '../../actions/admin';
-import { getColumns } from '../../utils/utils';
+import { getColumns, getColumnsName } from '../../utils/utils';
 import ButtonLink from '../../components/admin/ButtonLink';
 import Center from '../../components/admin/Center';
 import Modal from '../../components/admin/Modal';
@@ -24,7 +24,7 @@ class Grid extends Component {
     * @description: To init component
     */
     componentDidMount() {
-      this.getRecords(1);
+        this.getRecords(1);
     }
 
     /**
@@ -33,24 +33,13 @@ class Grid extends Component {
     * @param page {number}: Number page
     */
     getRecords(page) {
-      let columns = getColumns(this.props.data.columns);
-      //Obtengo la primera página
-      this.props.getDataApi(
-          this.props.data.api, this.props.data.model,
-          page, this.props.data.pagination, columns,
-          this.props.data.id_unique
-      );
-    }
-
-    /**
-    * @method: getColumnsName
-    * @description: Get columnsName crud
-    */
-    getColumnsName() {
-      let columnsName = this.props.data.columnsName;
-      columnsName = columnsName.split(',');
-      columnsName = columnsName.map((s) => { return s.trim() });
-      return columnsName
+        let columns = getColumns(this.props.data.columns);
+        //Obtengo la primera página
+        this.props.getDataApi(
+            this.props.data.api, this.props.data.model,
+            page, this.props.data.pagination, columns,
+            this.props.data.id_unique
+        );
     }
 
     /**
@@ -58,17 +47,17 @@ class Grid extends Component {
     * @description: Render data columns
     */
     renderColumns() {
-      let columns = this.getColumnsName();
-      let arrColumns = [];
+        let columns = getColumnsName(this.props.data.columnsName);
+        let arrColumns = [];
 
-      columns.map((column, i) => {
-          arrColumns.push(<th key={i}>{column}</th>);
-      });
+        columns.map((column, i) => {
+            arrColumns.push(<th key={i}>{column}</th>);
+        });
 
-      //Actions column
-      arrColumns.push(<th key={-1}>{"Actions"}</th>);
+        //Actions column
+        arrColumns.push(<th key={-1}>{"Actions"}</th>);
 
-      return arrColumns;
+        return arrColumns;
     }
 
     /**
@@ -77,33 +66,34 @@ class Grid extends Component {
     * @param: data {array}: data to render records
     */
     renderRecords(data) {
-      let records = [];
+        let records = [];
 
-      //If has data
-      if(typeof(data) !== 'undefined'){
-        data.map((item, i) => {
-          let record = [];
+        //If has data
+        if(typeof(data) !== 'undefined'){
+            data.map((item, i) => {
+                let record = [];
 
-          //Get id_unique and remove
-          let id_unique = item['pk'];
-          delete item['pk'];
+                //Get id_unique and remove
+                let id_unique = item['pk'];
+                //For not show in the grid
+                delete item['pk'];
 
-          //Load record
-          for (let key in item) {
-            record.push(<td key={key}> { item[key] } </td>);
-          }
+                //Load record
+                for (let key in item) {
+                    record.push(<td key={key}> { item[key] } </td>);
+                }
 
-          //Buttons action
-          let urlEdit = '#/' + this.props.data.model.toLowerCase() + '/' + 'edit/' + id_unique;
-          let urlRemove = '/' + this.props.data.model.toLowerCase() + '/' + id_unique;
-          let buttonEdit = <ButtonLink link={urlEdit} text={"Edit"} classButton={"default"} />;
-          let buttonRemove = <button type="button" className="btn btn-danger" data-toggle="modal" data-target={'#modal_' + id_unique}>{"Delete"}</button>;
-          let modal = <Modal id={id_unique} title={"Delete"} content={"Do you want to delete the record?"} submit={this.submitDelete.bind(this, id_unique, urlRemove)} />;
+                //Buttons action
+                let urlEdit = '#/' + this.props.data.model.toLowerCase() + '/' + 'edit/' + id_unique;
+                let urlRemove = '/' + this.props.data.model.toLowerCase() + '/' + id_unique;
+                let buttonEdit = <ButtonLink link={urlEdit} text={"Edit"} classButton={"default"} />;
+                let buttonRemove = <button type="button" className="btn btn-danger" data-toggle="modal" data-target={'#modal_' + id_unique}>{"Delete"}</button>;
+                let modal = <Modal id={id_unique} title={"Delete"} content={"Do you want to delete the record?"} submit={this.submitDelete.bind(this, id_unique, urlRemove)} />;
 
-          //Add record to array records
-          records.push(<tr> { record} <td>{buttonEdit} {buttonRemove} {modal}</td> </tr>);
-        });
-      }
+                //Add record to array records
+                records.push(<tr> { record} <td>{buttonEdit} {buttonRemove} {modal}</td> </tr>);
+            });
+        }
 
       return records;
     }
@@ -115,9 +105,9 @@ class Grid extends Component {
     * @param: urlRemove {string} ulr api to remove
     */
     submitDelete(id, urlRemove) {
-      $('#modal_' + id).modal('hide');
-      this.props.deleteRecord(urlRemove);
-      this.getRecords(1);
+        $('#modal_' + id).modal('hide');
+        this.props.deleteRecord(urlRemove);
+        this.getRecords(1);
     }
 
     /**
@@ -127,16 +117,16 @@ class Grid extends Component {
     * @param: dataclick {object} data bind in click pagination
     */
     handlePageClick(pagination, dataclick) {
-      let columns = getColumns(this.props.data.columns);
-      let page = dataclick.selected + 1;
-      //Update fetching to show Loading
-      this.props.setFetching(false);
+        let columns = getColumns(this.props.data.columns);
+        let page = dataclick.selected + 1;
+        //Update fetching to show Loading
+        this.props.setFetching(false);
 
-      //Get page
-      this.props.getDataApi(
-          this.props.data.api, this.props.data.model,
-          page, pagination, columns, this.props.data.id_unique
-      );
+        //Get page
+        this.props.getDataApi(
+            this.props.data.api, this.props.data.model,
+            page, pagination, columns, this.props.data.id_unique
+        );
     }
 
     render() {
@@ -173,7 +163,7 @@ class Grid extends Component {
 }
 
 Grid.propTypes = {
-  data: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
 }
 
 function mapStateToProps(state) {

@@ -16,7 +16,7 @@ export default class ButtonLink extends Component {
 }
 
 ButtonLink.propTypes = {
-  link: PropTypes.string.isRequired,
-  classButton: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+    classButton: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
 }

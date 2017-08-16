@@ -14,7 +14,7 @@ import { capitalizeFirstLetter } from '../../utils/utils';
 */
 export default class Crud extends Component {
     constructor(props, context) {
-      super(props, context);
+        super(props, context);
     }
 
     render() {
@@ -25,20 +25,20 @@ export default class Crud extends Component {
 
         return (
             <div>
-              <Navbar name_admin={ data.name_admin } />
-              <Container>
-                  <Panel title={title_crud} width_panel="100%" style={{marginBottom: '1em'}}>
-                    <div className="pull-left">
-                      <ButtonLink link={urlCreate} classButton={"default"} text={"Add record"} />
-                    </div>
-                    <div className="pull-right" style={{marginBottom: '1em'}}>
-                      <Search data={data} />
-                    </div>
-                    <div style={{marginTop: '3em'}}>
-                      <Grid data={data} />
-                    </div>
-                  </Panel>
-              </Container>
+                <Navbar name_admin={ data.name_admin } />
+                <Container>
+                    <Panel title={title_crud} width_panel="100%" style={{marginBottom: '1em'}}>
+                        <div className="pull-left">
+                            <ButtonLink link={urlCreate} classButton={"default"} text={"Add record"} />
+                        </div>
+                        <div className="pull-right" style={{marginBottom: '1em'}}>
+                            <Search data={data} />
+                        </div>
+                        <div style={{marginTop: '3em'}}>
+                            <Grid data={data} />
+                        </div>
+                    </Panel>
+                </Container>
             </div>
         );
     }

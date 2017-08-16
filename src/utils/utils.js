@@ -64,7 +64,7 @@ export function parseDataAdmin(data){
         fields[item.model_name] = item.fields;
         //Id unique for model
         id_unique[item.model_name] = item.id_unique;
-        });
+    });
   });
 
   return {
@@ -141,43 +141,56 @@ export function getColumns(stringColumns) {
 }
 
 /**
+* @method: getColumnsName
+* @description: Get columns crud to array
+* @param columnsName { string }: String columns to array
+*/
+export function getColumnsName(columnsName) {
+    columnsName = columnsName.split(',');
+    columnsName = columnsName.map((s) => { return s.trim() });
+    return columnsName;
+}
+
+/**
 * @method: getField
 * @description: Get component reference field
-* @param: field {object} field to get component
+* @param: propsField {object} field props
 * @param: isUpdate {boolean} if is form update
-* @param: dataRecord {object} data field
+* @param: valuesRecord {object} data values
 * @param: fieldNameApi {string} Name field in the api
 */
-export function getField(field, isUpdate, dataRecord, fieldNameApi) {
+export function getField(propsField, isUpdate, valuesRecord, fieldNameApi) {
     let HtmlObject;
     let type, max_length, required, id, name, placeholder, value;
 
-    type = field.type;
-    max_length = field.max_length;
-    required = field.required;
+    type = propsField.type;
+    max_length = propsField.max_length;
+    required = propsField.required;
     id = 'id_' + fieldNameApi;
     name = fieldNameApi;
-    placeholder = field.name;
+    placeholder = propsField.name;
     value = '';
 
     //Load value
     if (isUpdate) {
-        value = dataRecord[fieldNameApi];
+        value = valuesRecord[fieldNameApi];
     }
 
-    switch (type.toLowerCase()) {
-        case 'textarea':
-            HtmlObject = <div className='form-group'>
-                    <label> {placeholder} </label>
-                    <textarea name={name} id={id} className={'form-control'} rows={4} cols={50} required={required}
-                        placeholder={placeholder} defaultValue={value}>
-                    </textarea>
-                </div>;
-            break;
-        default:
-            HtmlObject = <Input type={type} max_length={max_length}
-                  required={required} id={id} name={name}
-                  placeholder={placeholder} defaultValue={value} />
+    if(value !== undefined || !isUpdate) {
+        switch (type.toLowerCase()) {
+            case 'textarea':
+                HtmlObject = <div className='form-group'>
+                        <label> {placeholder} </label>
+                        <textarea name={name} id={id} className={'form-control'} rows={4} cols={50} required={required}
+                            placeholder={placeholder} defaultValue={value}>
+                        </textarea>
+                    </div>;
+                break;
+            default:
+                HtmlObject = <Input type={type} max_length={max_length}
+                    required={required} id={id} name={name}
+                    placeholder={placeholder} value={value} />
+        }
     }
 
     return HtmlObject;

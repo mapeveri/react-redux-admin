@@ -5,7 +5,7 @@ import React, { Component, PropTypes } from 'react';
 */
 export default class Panel extends Component {
     constructor(props, context) {
-      super(props, context);
+        super(props, context);
     }
 
     render() {
@@ -23,6 +23,6 @@ export default class Panel extends Component {
 }
 
 Panel.propTypes = {
-  title: PropTypes.string.isRequired,
-  width_panel: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    width_panel: PropTypes.string.isRequired,
 }
