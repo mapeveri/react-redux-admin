@@ -1,40 +1,40 @@
 'use strict';
 
 const path = require('path');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-const restful = require('node-restful');
-const mongoose = restful.mongoose;
-
+const mongoose = require('mongoose');
+const restify = require('express-restify-mongoose');
 const app = express();
+const router = express.Router();
 
 app.use('/admin', express.static(__dirname + '/example'));
 app.use('/build', express.static(path.join(process.cwd() + '/build')));
 
-app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
-app.use(bodyParser.json({type:'application/vnd.api+json'}));
 app.use(methodOverride());
 
 mongoose.connect('mongodb://localhost/reactreduxadmin');
 
-const Users = restful.model('users', mongoose.Schema({
-    name: String,
-    username: String,
-    email: String,
-    website: String
-  }))
-  .methods(['get', 'post', 'put', 'delete']);
+restify.serve(router, 
+  mongoose.model('posts', new mongoose.Schema({
+    title: { type: String, required: true },
+    body: { type: String, require: true }
+  })), {totalCountHeader: true}
+);
 
-const Posts = restful.model('posts', mongoose.Schema({
-    title: String,
-    body: String
-  }))
-  .methods(['get', 'post', 'put', 'delete']);
+restify.serve(router, 
+  mongoose.model('users', new mongoose.Schema({
+    name: { type: String, required: true },
+    username: { type: String, require: true },
+    email: { type: String, require: true },
+    website: { type: String, require: true }
+  })), {totalCountHeader: true}
+);
 
-Users.register(app, '/users');
-Posts.register(app, '/posts');
+app.use(router);
 
 app.listen(5000, () => {
   console.log('Listening port: 5000');

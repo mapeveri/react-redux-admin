@@ -111,7 +111,7 @@ class FormCrud extends Component {
                             <form id="formcrud" name="formcrud" onSubmit={this.handleSubmit.bind(this)}>
                                 {this.props.isFetching && this.setFields(data)}
                                 <input type="submit" className="btn btn-default" value={"Send"} />
-                                <a href={urlBack} className="btn btn-default">Back to {model}</a>
+                                <a href={urlBack} style={{marginLeft: '5px'}} className="btn btn-default">Back to {model}</a>
                             </form>
                         </Panel>
                     </Center>

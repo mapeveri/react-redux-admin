@@ -18,7 +18,7 @@ export default class Modal extends Component {
 
     render() {
         return (
-            <div className="modal fade" id={'modal_' + this.props.id} tabindex="-1" role="dialog" aria-labelledby={'myModalLabel_' + this.props.id}>
+            <div className="modal fade" id={'modal_' + this.props.id} role="dialog" aria-labelledby={'myModalLabel_' + this.props.id}>
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                     <div className="modal-header">
@@ -40,7 +40,7 @@ export default class Modal extends Component {
 }
 
 Modal.propTypes = {
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     submit: PropTypes.func.isRequired,

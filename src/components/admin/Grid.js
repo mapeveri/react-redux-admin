@@ -35,9 +35,9 @@ class Grid extends Component {
     getRecords(page) {
         let columns = getColumns(this.props.data.columns);
         //Obtengo la primera página
+        let url = this.props.data.api + this.props.data.model;
         this.props.getDataApi(
-            this.props.data.api, this.props.data.model,
-            page, this.props.data.pagination, columns,
+            url, page, this.props.data.pagination, columns,
             this.props.data.id_unique
         );
     }
@@ -75,6 +75,7 @@ class Grid extends Component {
 
                 //Get id_unique and remove
                 let id_unique = item['pk'];
+
                 //For not show in the grid
                 delete item['pk'];
 
@@ -91,7 +92,7 @@ class Grid extends Component {
                 let modal = <Modal id={id_unique} title={"Delete"} content={"Do you want to delete the record?"} submit={this.submitDelete.bind(this, id_unique, urlRemove)} />;
 
                 //Add record to array records
-                records.push(<tr> { record} <td>{buttonEdit} {buttonRemove} {modal}</td> </tr>);
+                records.push(<tr key={i}>{record}<td>{buttonEdit} {buttonRemove} {modal}</td></tr>);
             });
         }
 
@@ -123,9 +124,9 @@ class Grid extends Component {
         this.props.setFetching(false);
 
         //Get page
+        let url = this.props.data.api + this.props.data.model;
         this.props.getDataApi(
-            this.props.data.api, this.props.data.model,
-            page, pagination, columns, this.props.data.id_unique
+            url, page, pagination, columns, this.props.data.id_unique
         );
     }
 

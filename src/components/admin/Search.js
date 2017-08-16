@@ -24,19 +24,18 @@ class Search extends Component {
         //Set fetching in false to show loading
         this.props.dispatch(setFetching(false));
 
+        let url = this.props.data.api + this.props.data.model;
         //If empty return to page 1
         if (textSearch === ''){
             //Obtengo la primera página
             this.props.dispatch(getDataApi(
-                this.props.data.api, this.props.data.model,
-                1, this.props.data.pagination, columns,
+                url, 1, this.props.data.pagination, columns,
                 this.props.data.id_unique
             ))
         }else{
             //Obtengo la primera página
             this.props.dispatch(getDataApi(
-                this.props.data.api, this.props.data.model,
-                null, this.props.data.pagination, columns,
+                url, null, this.props.data.pagination, columns,
                 this.props.data.id_unique, textSearch
             ))
         }
