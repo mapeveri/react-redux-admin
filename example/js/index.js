@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactReduxAdmin  from '../../src';
 import models from './models';

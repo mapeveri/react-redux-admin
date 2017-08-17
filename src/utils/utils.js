@@ -8,71 +8,26 @@ import FormCrud from '../containers/admin/FormCrud';
 /**
 * @method: getSections
 * @description: Function that return the sections admin
-* @param: data {object} data configuration admin
+* @param: models {object} data configuration admin
 */
-export function getSections(data) {
-    return Object.keys(data.models);
+export function getSections(models) {
+    return Object.keys(models);
 }
 
 /**
 * @method: getModels
 * @description: Get models of one section
-* @param: data {object} data configuration admin
+* @param: models {object} Object with the models
 * @param section {string} section to get models
 */
-export function getModels(data, section) {
-    let models = [];
-    data.models[section].models.forEach((item) => {
+export function getModels(models, section) {
+    let arrModels = [];
+    models[section].models.forEach((item) => {
         //Add model name to array
-        models.push(item.model_name);
+        arrModels.push(item.model_name);
     });
 
-    return models;
-}
-
-/**
-* @method: parseDataAdmin
-* @description: Function that return the data object order for model with:
-* @param api {string}: Api rest
-* @param name_admin {string}: Name administrator
-* @param models {object}: Object with all models register with the key model.
-* @param columns {object} Object with columns of each model register.
-* @param fields {object}: Object with columns of earch model register.
-* @param pagination {number}: Number of pagination for page.
-* @param id_unique{number}: Field identifcation unique in model
-* @params: data {object} data configuration admin
-*/
-export function parseDataAdmin(data){
-    let models = [];
-    let columns = {};
-    let columnsName = {};
-    let fields = {};
-    let id_unique = {};
-
-    let sections = getSections(data);
-    sections.forEach((section) => {
-        //Loop for model register
-        data.models[section].models.forEach((item) => {
-        //Add model name to array
-        models.push(item.model_name);
-        //Object with columns for key model name
-        columns[item.model_name] = item.columns;
-        //Object with fields for key model name
-        fields[item.model_name] = item.fields;
-        //Id unique for model
-        id_unique[item.model_name] = item.id_unique;
-    });
-  });
-
-  return {
-        api: data.api,
-        name_admin: data.name_admin,
-        models: models,
-        columns: columns,
-        fields: fields,
-        pagination: data.pagination,
-        id_unique: id_unique,
-  }
+    return arrModels;
 }
 
 /** 
@@ -81,35 +36,51 @@ export function parseDataAdmin(data){
 * @param: data {object} data configuration admin
 */
 export function generateRoutes(data){
-  let routes = [];
-  data.models.forEach((model, i) => {
-      //The data for the model
-      let dataModel = {
-        api: data.api,
-        columns: data.columns[model],
-        fields: data.fields[model],
-        name_admin: data.name_admin,
-        title_crud: model,
-        model: model,
-        pagination: data.pagination,
-        id_unique: data.id_unique[model],
-      };
+    let routes = [];
 
-      let dataModelCreate = dataModel;
-      dataModelCreate['action'] = 'c';
+    let models = [];
+    let columns = {};
+    let columnsName = {};
+    let fields = {};
+    let id_unique = {};
 
-      let dataModelUpdate = dataModel;
-      dataModelUpdate['action'] = 'e';
+    let sections = getSections(data.models);
+    sections.forEach((section) => {
+        //Loop for model register
+        data.models[section].models.forEach((item) => {
+            //Add model name to array
+            models.push(item.model_name);
+            //Object with columns for key model name
+            columns[item.model_name] = item.columns;
+            //Object with fields for key model name
+            fields[item.model_name] = item.fields;
+            //Id unique for model
+            id_unique[item.model_name] = item.id_unique;
+        });
+    });
 
-      //Add route main crud
-      routes.push(<Route key={i} path={'/' + model} data={dataModel} component={Crud} />);
+    models.forEach((model, i) => {
+        //The data for the model
+        let dataModel = {
+            api: data.api,
+            columns: columns[model],
+            fields: fields[model],
+            name_admin: data.name_admin,
+            title_crud: model,
+            model: model,
+            pagination: data.pagination,
+            id_unique: id_unique[model],
+        };
 
-      //Add route crud create
-      routes.push(<Route key={i} path={'/' + model + '/add'} data={dataModelCreate} component={FormCrud} />);
+        //Add route main crud
+        routes.push(<Route key={i} path={'/' + model} model={dataModel} component={Crud} />);
 
-      //Add route crud edit
-      routes.push(<Route key={i} path={'/' + model + '/edit' + '/:paramId'} data={dataModelUpdate} component={FormCrud} />);
-  })
+        //Add route crud create
+        routes.push(<Route key={i} path={'/' + model + '/add'} model={dataModel} component={FormCrud} />);
+
+        //Add route crud edit
+        routes.push(<Route key={i} path={'/' + model + '/edit' + '/:paramId'} model={dataModel} component={FormCrud} />);
+    });
 
   return routes;
 }

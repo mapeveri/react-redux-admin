@@ -40,7 +40,7 @@ class FormCrud extends Component {
     getRecord() {
         let id = this.props.params.paramId;
         //Url to get data
-        let url = this.props.route.data.api + this.props.route.data.model + '/' + id;
+        let url = this.props.route.model.api + this.props.route.model.model + '/' + id;
         //If is edit
         if (this.isUpdate()) {
             this.props.getDataRecord(url);
@@ -69,7 +69,7 @@ class FormCrud extends Component {
     handleSubmit(e) {
         e.preventDefault();
         let data = {};
-        let fields = this.props.route.data.fields;
+        let fields = this.props.route.model.fields;
         let values = e.target;
 
         for(let field in fields) {
@@ -78,12 +78,12 @@ class FormCrud extends Component {
         
         //If is update
         if (this.isUpdate()) {
-            let url = this.props.route.data.api + this.props.route.data.model + '/' + this.props.params.paramId;
+            let url = this.props.route.model.api + this.props.route.model.model + '/' + this.props.params.paramId;
             this.props.updateRecord(url, JSON.stringify(data));
-            location.href = '#/' + this.props.route.data.model.toLocaleLowerCase();
+            location.href = '#/' + this.props.route.model.model.toLocaleLowerCase();
         } else {
             //Is create
-            let url = this.props.route.data.api + this.props.route.data.model
+            let url = this.props.route.model.api + this.props.route.model.model
             this.props.insertRecord(url, JSON.stringify(data));
             //Clear form
             document.forms[0].reset();
@@ -91,7 +91,7 @@ class FormCrud extends Component {
     }
 
     render() {
-        let data = this.props.route.data;
+        let data = this.props.route.model;
         let title_form = '';
         if (this.isUpdate()) {
             title_form = 'Edit ' + capitalizeFirstLetter(data.title_crud);
@@ -122,7 +122,7 @@ class FormCrud extends Component {
 }
 
 FormCrud.propTypes = {
-    data: PropTypes.object
+    formCrud: PropTypes.object
 }
 
 function mapStateToProps(state) {

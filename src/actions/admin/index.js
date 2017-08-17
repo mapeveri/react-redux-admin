@@ -1,8 +1,8 @@
 import * as actionsTypes from '../../constants/admin/ActionTypes';
 
 /**
-* @method: getDataApi
-* @description: Get data api for the cruds
+* @method: getDataGrid
+* @description: Get data to grid from api for the cruds
 * @param: url {string}: url api
 * @param: page {integer}: Page to pagination
 * @param: pagination {integer}: Configuration of items for pagination
@@ -10,7 +10,7 @@ import * as actionsTypes from '../../constants/admin/ActionTypes';
 * @param: id_unique {string}: Field identifcation unique in model
 * @param: textSearch {string}: Text to search in crud
 */
-export function getDataApi(url, page, pagination, columns, id_unique, textSearch='') {
+export function getDataGrid(url, page, pagination, columns, id_unique, textSearch='') {
     let isSearch = false;
 
     //If its is null, then is searching and get all data for to search
@@ -60,9 +60,9 @@ export function getDataRecord(url) {
     return dispatch => {
         fetch(url).then((response) => {
             return response.json().then((data) => {
-            dispatch({
-                type: actionsTypes.GET_DATA_RECORD, data: data,
-            });
+                dispatch({
+                    type: actionsTypes.GET_DATA_RECORD, data: data,
+                });
             })
         }).catch((ex) => {
             console.log('Error to get records. ' + ex);

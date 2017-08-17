@@ -4,8 +4,6 @@ import Container from '../../components/admin/Container';
 import Navbar from '../../components/admin/Navbar';
 import PanelSections from '../../components/admin/PanelSections';
 
-import { capitalizeFirstLetter } from '../../utils/utils';
-
 /**
 * Crud container
 */
@@ -18,10 +16,10 @@ export default class Dashboard extends Component {
         let data = this.props.route.data;
         return (
             <div>
-              <Navbar name_admin={ data.name_admin } />
-              <Container>
-                <PanelSections data={data} />
-              </Container>
+                <Navbar name_admin={ data.name_admin } />
+                <Container>
+                    <PanelSections data={data} />
+                </Container>
             </div>
         );
     }

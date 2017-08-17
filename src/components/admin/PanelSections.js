@@ -15,7 +15,7 @@ export default class PanelSections extends Component {
     */
     renderSections() {
         let panels = [];
-        let sections = getSections(this.props.data)
+        let sections = getSections(this.props.data.models)
         sections.forEach((section) => {
             panels.push(<div key={section} className="panel panel-default">
             <div className="panel-heading">
@@ -41,9 +41,9 @@ export default class PanelSections extends Component {
     */
     renderModels(section) {
         let arrModels = [];
-        let models = getModels(this.props.data, section);
+        let models = getModels(this.props.data.models, section);
         models.forEach((model, i) => {
-            arrModels.push(<a href={'#/' + model.toLowerCase()} className="list-group-item">{model}</a>);
+            arrModels.push(<a key={i} href={'#/' + model.toLowerCase()} className="list-group-item">{model}</a>);
         });
 
         return <div className="list-group">
@@ -53,7 +53,7 @@ export default class PanelSections extends Component {
 
     render() {
         return (
-          <div className="panel-group" id="accordion" role="tablist" ariaMultiselectable="true">
+          <div className="panel-group" id="accordion" role="tablist">
             { this.renderSections() }
           </div>
         );

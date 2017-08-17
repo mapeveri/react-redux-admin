@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import 'whatwg-fetch';
 import Loading from 'react-loading-animation';
 
-import { getDataApi, setFetching, deleteRecord } from '../../actions/admin';
+import { getDataGrid, setFetching, deleteRecord } from '../../actions/admin';
 import { getColumns, getColumnsName } from '../../utils/utils';
 import ButtonLink from '../../components/admin/ButtonLink';
 import Center from '../../components/admin/Center';
@@ -16,7 +16,7 @@ import * as actionsTypes from '../../constants/admin/ActionTypes';
 */
 class Grid extends Component {
     constructor(props, context) {
-      super(props, context);
+        super(props, context);
     }
 
     /**
@@ -24,21 +24,21 @@ class Grid extends Component {
     * @description: To init component
     */
     componentDidMount() {
+        //Get the first page
         this.getRecords(1);
     }
 
     /**
     * @method: getRecords
-    * @description: Get records Grid
+    * @description: Get records data to Grid
     * @param page {number}: Number page
     */
     getRecords(page) {
-        let columns = getColumns(this.props.data.columns);
-        //Obtengo la primera página
-        let url = this.props.data.api + this.props.data.model;
-        this.props.getDataApi(
-            url, page, this.props.data.pagination, columns,
-            this.props.data.id_unique
+        let columns = getColumns(this.props.model.columns);
+        let url = this.props.model.api + this.props.model.model;
+        this.props.getDataGrid(
+            url, page, this.props.model.pagination, columns,
+            this.props.model.id_unique
         );
     }
 
@@ -47,7 +47,7 @@ class Grid extends Component {
     * @description: Render data columns
     */
     renderColumns() {
-        let arrColumns = getColumnsName(this.props.data.fields);
+        let arrColumns = getColumnsName(this.props.model.fields);
         //Actions column
         arrColumns.push(<th key={-1}>{"Actions"}</th>);
 
@@ -56,7 +56,7 @@ class Grid extends Component {
 
     /**
     * @method: renderRecords
-    * @description: Render data records
+    * @description: Render data records in grid
     * @param: data {array}: data to render records
     */
     renderRecords(data) {
@@ -79,8 +79,8 @@ class Grid extends Component {
                 }
 
                 //Buttons action
-                let urlEdit = '#/' + this.props.data.model.toLowerCase() + '/' + 'edit/' + id_unique;
-                let urlRemove = this.props.data.api + this.props.data.model.toLowerCase() + '/' + id_unique;
+                let urlEdit = '#/' + this.props.model.model.toLowerCase() + '/' + 'edit/' + id_unique;
+                let urlRemove = this.props.model.api + this.props.model.model.toLowerCase() + '/' + id_unique;
 
                 let buttonEdit = <ButtonLink link={urlEdit} text={"Edit"} classButton={"default"} />;
                 let buttonRemove = <button type="button" className="btn btn-danger" data-toggle="modal" data-target={'#modal_' + id_unique}>{"Delete"}</button>;
@@ -113,15 +113,15 @@ class Grid extends Component {
     * @param: dataclick {object} data bind in click pagination
     */
     handlePageClick(pagination, dataclick) {
-        let columns = getColumns(this.props.data.columns);
+        let columns = getColumns(this.props.model.columns);
         let page = dataclick.selected + 1;
         //Update fetching to show Loading
         this.props.setFetching(false);
 
         //Get page
-        let url = this.props.data.api + this.props.data.model;
-        this.props.getDataApi(
-            url, page, pagination, columns, this.props.data.id_unique
+        let url = this.props.model.api + this.props.model.model;
+        this.props.getDataGrid(
+            url, page, pagination, columns, this.props.model.id_unique
         );
     }
 
@@ -148,7 +148,7 @@ class Grid extends Component {
                  pageNum={this.props.pageNum}
                  marginPagesDisplayed={2}
                  pageRangeDisplayed={5}
-                 clickCallback={this.handlePageClick.bind(this, this.props.data.pagination)}
+                 clickCallback={this.handlePageClick.bind(this, this.props.model.pagination)}
                  containerClassName={"pagination"}
                  subContainerClassName={"pages pagination"}
                  activeClassName={"active"} />
@@ -159,7 +159,7 @@ class Grid extends Component {
 }
 
 Grid.propTypes = {
-    data: PropTypes.object.isRequired,
+    model: PropTypes.object.isRequired,
 }
 
 function mapStateToProps(state) {
@@ -172,4 +172,4 @@ function mapStateToProps(state) {
 }
 
 //Conect component to redux
-export default connect(mapStateToProps, {getDataApi, setFetching, deleteRecord})(Grid);
+export default connect(mapStateToProps, {getDataGrid, setFetching, deleteRecord})(Grid);

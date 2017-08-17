@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import ButtonLink from '../../components/admin/ButtonLink';
 import Container from '../../components/admin/Container';
@@ -18,7 +18,7 @@ export default class Crud extends Component {
     }
 
     render() {
-        let data = this.props.route.data;
+        let data = this.props.route.model;
         let title_crud = capitalizeFirstLetter(data.title_crud);
         let columns = data.columns;
         let urlCreate = '#/' + data.model.toLowerCase() + '/' + 'add';
@@ -32,14 +32,18 @@ export default class Crud extends Component {
                             <ButtonLink link={urlCreate} classButton={"default"} text={"Add record"} />
                         </div>
                         <div className="pull-right" style={{marginBottom: '1em'}}>
-                            <Search data={data} />
+                            <Search model={data} />
                         </div>
                         <div style={{marginTop: '3em'}}>
-                            <Grid data={data} />
+                            <Grid model={data} />
                         </div>
                     </Panel>
                 </Container>
             </div>
         );
     }
+}
+
+Crud.propTypes = {
+    model: PropTypes.object
 }

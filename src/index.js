@@ -11,7 +11,7 @@ import configureStore from './store';
 import Login from './containers/admin/Login';
 import Dashboard from './containers/admin/Dashboard';
 
-import { generateRoutes, parseDataAdmin } from './utils/utils';
+import { generateRoutes } from './utils/utils';
 
 const store = configureStore();
 const hashHistory = useRouterHistory(createHashHistory)({ queryKey: false })
@@ -26,16 +26,14 @@ export default class ReactReduxAdmin extends Component {
     }
 
     render() {
-        //Parse models.js
-        let data = parseDataAdmin(this.props.data);
         //Generate routes
-        let routes = generateRoutes(data);
+        let routes = generateRoutes(this.props.data);
 
         return (
             <Provider store={store}>
                 <Router history={history}>
                     <Route>
-                        <Route path="/" data={data} component={Login} />
+                        <Route path="/" data={this.props.data} component={Login} />
                         <Route path="/dashboard" data={this.props.data} component={Dashboard} />
                         { routes }
                     </Route>

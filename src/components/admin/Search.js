@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
-import { getDataApi, setFetching } from '../../actions/admin';
+import { getDataGrid, setFetching } from '../../actions/admin';
 import { getColumns } from '../../utils/utils';
 
 /**
@@ -9,7 +9,7 @@ import { getColumns } from '../../utils/utils';
 */
 class Search extends Component {
     constructor(props, context) {
-      super(props, context);
+        super(props, context);
     }
 
     /**
@@ -19,24 +19,24 @@ class Search extends Component {
     onSearch(e) {
         e.preventDefault();
         let textSearch = e.target.input_search.value
-        let columns = getColumns(this.props.data.columns);
+        let columns = getColumns(this.props.model.columns);
 
         //Set fetching in false to show loading
         this.props.dispatch(setFetching(false));
 
-        let url = this.props.data.api + this.props.data.model;
+        let url = this.props.model.api + this.props.model.model;
         //If empty return to page 1
         if (textSearch === ''){
             //Obtengo la primera página
-            this.props.dispatch(getDataApi(
-                url, 1, this.props.data.pagination, columns,
-                this.props.data.id_unique
+            this.props.dispatch(getDataGrid(
+                url, 1, this.props.model.pagination, columns,
+                this.props.model.id_unique
             ))
         }else{
             //Obtengo la primera página
-            this.props.dispatch(getDataApi(
-                url, null, this.props.data.pagination, columns,
-                this.props.data.id_unique, textSearch
+            this.props.dispatch(getDataGrid(
+                url, null, this.props.model.pagination, columns,
+                this.props.model.id_unique, textSearch
             ))
         }
     }
