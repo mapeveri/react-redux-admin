@@ -27,6 +27,12 @@ restify.serve(router,
 );
 
 restify.serve(router, 
+  mongoose.model('categories', new mongoose.Schema({
+    name: { type: String, required: true }
+  })), {totalCountHeader: true}
+);
+
+restify.serve(router, 
   mongoose.model('users', new mongoose.Schema({
     name: { type: String, required: true },
     username: { type: String, require: true },

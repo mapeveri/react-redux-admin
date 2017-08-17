@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { getModels, getSections } from '../../utils/utils';
+import { capitalizeFirstLetter, getModels, getSections } from '../../utils/utils';
 
 /**
 * Panel div component
@@ -43,7 +43,7 @@ export default class PanelSections extends Component {
         let arrModels = [];
         let models = getModels(this.props.data.models, section);
         models.forEach((model, i) => {
-            arrModels.push(<a key={i} href={'#/' + model.toLowerCase()} className="list-group-item">{model}</a>);
+            arrModels.push(<a key={i} href={'#/' + model} className="list-group-item">{capitalizeFirstLetter(model)}</a>);
         });
 
         return <div className="list-group">

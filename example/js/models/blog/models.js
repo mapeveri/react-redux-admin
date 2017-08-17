@@ -22,6 +22,18 @@ export const modelsPosts = {
 					'required': false,
 				}
 			}
+		},{
+			'model_name': 'categories',
+			'id_unique': '_id',
+			'columns': ['name'],
+			'fields': {
+				'name': {
+					'name': 'Name',
+					'max_length': '50',
+					'type': 'text',
+					'required': true,
+				}
+			}
 		}]
 	}
 }

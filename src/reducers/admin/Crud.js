@@ -50,7 +50,7 @@ export default function Crud(state = initialState, action) {
 
             return Object.assign({}, state, {
                 data_api: data_api,
-                pageNum: Math.round(action.totalRecords / action.pagination),
+                pageNum: Math.ceil(action.totalRecords / action.pagination),
                 isFetching: true,
                 action: action.type,
             });
