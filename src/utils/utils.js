@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router';
 
 import Input from '../components/admin/Input';
+import Checkbox from '../components/admin/Checkbox';
 import Crud from '../containers/admin/Crud';
 import FormCrud from '../containers/admin/FormCrud';
 
@@ -95,27 +96,17 @@ export function capitalizeFirstLetter(string) {
 }
 
 /**
-* @method: getColumns
-* @description: Get columns crud to array
-* @param stringColumns { string }: String columns to array
-*/
-export function getColumns(stringColumns) {
-    let columns = stringColumns;
-    columns = columns.split(',');
-    columns = columns.map((s) => { return s.trim() });
-    return columns;
-}
-
-/**
 * @method: getColumnsName
 * @description: Get columns crud to array
 * @param columnsName { string }: Array fields
 */
-export function getColumnsName(fields) {
+export function getColumnsName(fields, columns) {
     let arrColumns = [];
     for(let field in fields) {
         let i = Object.keys(fields).indexOf(field);
-        arrColumns.push(<th key={i}>{fields[field].name}</th>);
+        if(columns.indexOf(field) > -1) {
+            arrColumns.push(<th key={i}>{fields[field].name}</th>);
+        }
     }
     return arrColumns;
 }
@@ -155,10 +146,15 @@ export function getField(propsField, isUpdate, valuesRecord, fieldNameApi) {
                         </textarea>
                     </div>;
                 break;
+            case 'checkbox':
+                HtmlObject = <Checkbox required={required} id={id} name={name}
+                    placeholder={placeholder} value={value} />
+                break;
             default:
                 HtmlObject = <Input type={type} max_length={max_length}
                     required={required} id={id} name={name}
                     placeholder={placeholder} value={value} />
+                break;
         }
     }
 

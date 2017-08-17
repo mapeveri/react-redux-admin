@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
 import { getDataGrid, setFetching } from '../../actions/admin';
-import { getColumns } from '../../utils/utils';
 
 /**
 * Search input crud component
@@ -19,7 +18,6 @@ class Search extends Component {
     onSearch(e) {
         e.preventDefault();
         let textSearch = e.target.input_search.value
-        let columns = getColumns(this.props.model.columns);
 
         //Set fetching in false to show loading
         this.props.dispatch(setFetching(false));
@@ -29,13 +27,15 @@ class Search extends Component {
         if (textSearch === ''){
             //Obtengo la primera página
             this.props.dispatch(getDataGrid(
-                url, 1, this.props.model.pagination, columns,
+                url, 1, this.props.model.pagination,
+                this.props.model.columns,
                 this.props.model.id_unique
             ))
         }else{
             //Obtengo la primera página
             this.props.dispatch(getDataGrid(
-                url, null, this.props.model.pagination, columns,
+                url, null, this.props.model.pagination,
+                this.props.model.columns,
                 this.props.model.id_unique, textSearch
             ))
         }

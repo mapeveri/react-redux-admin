@@ -3,7 +3,7 @@ export const modelsPosts = {
 		'models': [{
 			'model_name': 'posts',
 			'id_unique': '_id',
-			'columns': 'title, body',
+			'columns': ['title', 'body'],
 			'fields': {
 				'title': {
 					'name': 'Title',
@@ -15,6 +15,11 @@ export const modelsPosts = {
 					'name': 'Body',
 					'type': 'textarea',
 					'required': true,
+				},
+				'hidden': {
+					'name': 'Hidden',
+					'type': 'checkbox',
+					'required': false,
 				}
 			}
 		}]

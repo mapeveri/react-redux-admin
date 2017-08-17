@@ -5,7 +5,7 @@ import 'whatwg-fetch';
 import Loading from 'react-loading-animation';
 
 import { getDataGrid, setFetching, deleteRecord } from '../../actions/admin';
-import { getColumns, getColumnsName } from '../../utils/utils';
+import { getColumnsName } from '../../utils/utils';
 import ButtonLink from '../../components/admin/ButtonLink';
 import Center from '../../components/admin/Center';
 import Modal from '../../components/admin/Modal';
@@ -34,10 +34,9 @@ class Grid extends Component {
     * @param page {number}: Number page
     */
     getRecords(page) {
-        let columns = getColumns(this.props.model.columns);
         let url = this.props.model.api + this.props.model.model;
         this.props.getDataGrid(
-            url, page, this.props.model.pagination, columns,
+            url, page, this.props.model.pagination, this.props.model.columns,
             this.props.model.id_unique
         );
     }
@@ -47,7 +46,7 @@ class Grid extends Component {
     * @description: Render data columns
     */
     renderColumns() {
-        let arrColumns = getColumnsName(this.props.model.fields);
+        let arrColumns = getColumnsName(this.props.model.fields, this.props.model.columns);
         //Actions column
         arrColumns.push(<th key={-1}>{"Actions"}</th>);
 
@@ -113,7 +112,6 @@ class Grid extends Component {
     * @param: dataclick {object} data bind in click pagination
     */
     handlePageClick(pagination, dataclick) {
-        let columns = getColumns(this.props.model.columns);
         let page = dataclick.selected + 1;
         //Update fetching to show Loading
         this.props.setFetching(false);
@@ -121,7 +119,7 @@ class Grid extends Component {
         //Get page
         let url = this.props.model.api + this.props.model.model;
         this.props.getDataGrid(
-            url, page, pagination, columns, this.props.model.id_unique
+            url, page, pagination, this.props.model.columns, this.props.model.id_unique
         );
     }
 

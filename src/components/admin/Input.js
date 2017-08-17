@@ -5,18 +5,18 @@ import React, { Component, PropTypes } from 'react';
 */
 export default class Input extends Component {
     constructor(props, context) {
-      super(props, context);
+        super(props, context);
     }
     
     render() {
         let width = '';
         let max_length = parseInt(this.props.max_length);
         if(max_length >= 50 && max_length < 80){
-          width = '50%'
+            width = '50%'
         }else if (max_length >= 80 && max_length < 250) {
-          width = '80%';
+            width = '80%';
         }else{
-          width = '100%'
+            width = '100%'
         }
 
         return (

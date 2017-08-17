@@ -3,7 +3,7 @@ export const modelsUsers = {
 		'models': [{
 			'model_name': 'users',
 			'id_unique': '_id',
-			'columns': 'name, username, email, website',
+			'columns': ['name', 'username', 'email', 'website'],
 			'fields': {
 				'name': {
 					'name': 'Name',
