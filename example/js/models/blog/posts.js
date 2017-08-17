@@ -3,7 +3,7 @@ export const modelsPosts = {
 		'models': [{
 			'model_name': 'posts',
 			'id_unique': '_id',
-			'columns': ['title', 'body'],
+			'columns': ['title', 'body', 'hidden'],
 			'fields': {
 				'title': {
 					'name': 'Title',

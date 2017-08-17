@@ -73,7 +73,11 @@ class FormCrud extends Component {
         let values = e.target;
 
         for(let field in fields) {
-            data[field] = values[field].value;
+            if(fields[field].type == 'checkbox') {
+                data[field] = values[field].checked;
+            } else {
+                data[field] = values[field].value;
+            }
         };
         
         //If is update

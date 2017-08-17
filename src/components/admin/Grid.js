@@ -74,7 +74,11 @@ class Grid extends Component {
 
                 //Load record
                 for (let key in item) {
-                    record.push(<td key={key}> { item[key] } </td>);
+                    if(typeof(item[key]) == 'boolean') {
+                        record.push(<td key={key}>{ item[key] == true ? 'Yes' : 'No' }</td>);
+                    } else {
+                        record.push(<td key={key}>{ item[key] }</td>);
+                    }
                 }
 
                 //Buttons action

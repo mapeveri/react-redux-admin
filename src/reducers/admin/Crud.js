@@ -34,8 +34,10 @@ export default function Crud(state = initialState, action) {
                     let exists = false;
                     for(let key in record) {
                         //If contains the value to filter
-                        if (record[key].toLocaleLowerCase().indexOf(action.textSearch.toLocaleLowerCase()) > -1) {
-                            exists = true;
+                        if(typeof(record[key]) == 'string') {
+                            if (record[key].toLocaleLowerCase().indexOf(action.textSearch.toLocaleLowerCase()) > -1) {
+                                exists = true;
+                            }
                         }
                     }
 
