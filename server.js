@@ -22,6 +22,7 @@ restify.serve(router,
   mongoose.model('posts', new mongoose.Schema({
     title: { type: String, required: true },
     body: { type: String, require: true },
+    category: { type: String, require: true },
     hidden: { type: Boolean, require: false }
   })), {totalCountHeader: true}
 );

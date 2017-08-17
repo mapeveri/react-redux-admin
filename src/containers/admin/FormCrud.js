@@ -56,6 +56,7 @@ class FormCrud extends Component {
         let setForm = [];
         let fields = data.fields;
         for(let field in fields) {
+            fields[field]['api'] = this.props.route.model.api;
             if(this.isUpdate()) {
                 setForm.push(getField(fields[field], true, this.props.record, field));
             } else {

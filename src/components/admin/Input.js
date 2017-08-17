@@ -36,6 +36,6 @@ Input.propTypes = {
     name: PropTypes.string.isRequired,
     placeholder: PropTypes.string.isRequired,
     required: PropTypes.bool.isRequired,
-    max_length: PropTypes.string.isRequired,
+    max_length: PropTypes.string,
     value: PropTypes.string.isRequired
 }

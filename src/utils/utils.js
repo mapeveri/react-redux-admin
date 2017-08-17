@@ -3,6 +3,7 @@ import { Route } from 'react-router';
 
 import Input from '../components/admin/Input';
 import Checkbox from '../components/admin/Checkbox';
+import ComboBox from '../components/admin/ComboBox';
 import Crud from '../containers/admin/Crud';
 import FormCrud from '../containers/admin/FormCrud';
 
@@ -121,7 +122,7 @@ export function getColumnsName(fields, columns) {
 */
 export function getField(propsField, isUpdate, valuesRecord, fieldNameApi) {
     let HtmlObject;
-    let type, max_length, required, id, name, placeholder, value;
+    let type, max_length, required, id, name, placeholder, value, api;
 
     type = propsField.type;
     max_length = propsField.max_length;
@@ -130,6 +131,7 @@ export function getField(propsField, isUpdate, valuesRecord, fieldNameApi) {
     name = fieldNameApi;
     placeholder = propsField.name;
     value = '';
+    api = propsField.api;
 
     //Load value
     if (isUpdate) {
@@ -145,6 +147,12 @@ export function getField(propsField, isUpdate, valuesRecord, fieldNameApi) {
                             placeholder={placeholder} defaultValue={value}>
                         </textarea>
                     </div>;
+                break;
+            case 'combobox':
+                HtmlObject = <ComboBox name={name} id={id} required={required}
+                            placeholder={placeholder} value={value} 
+                            relation={propsField.relation} api={api} pk={propsField.pk} />
+
                 break;
             case 'checkbox':
                 HtmlObject = <Checkbox required={required} id={id} name={name}

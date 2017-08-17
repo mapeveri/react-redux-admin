@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 /**
-* Input component
+* Checkbox component
 */
 export default class Checkbox extends Component {
     constructor(props, context) {
@@ -13,7 +13,7 @@ export default class Checkbox extends Component {
             <div className="form-group">
                 <label>{this.props.placeholder}</label>
                 <input type="checkbox" name={this.props.name}
-                    id={this.props.id} placeholder={this.props.placeholder} style={{'margin-left': '5px'}}
+                    id={this.props.id} placeholder={this.props.placeholder} style={{'marginLeft': '5px'}}
                     required={this.props.required} defaultValue={this.props.value} />
             </div>
         );

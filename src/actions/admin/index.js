@@ -141,3 +141,22 @@ export function deleteRecord(url) {
         });
     }
 }
+
+/**
+* @method: getDataCombo
+* @description: Get data combobox
+* @param: url {string}: url api
+*/
+export function getDataCombo(url) {
+    return dispatch => {
+        fetch(url).then((response) => {
+            return response.json().then((data) => {
+                dispatch({
+                    type: actionsTypes.GET_DATA_COMBO, data: data,
+                });
+            })
+        }).catch((ex) => {
+            console.log('Error to get records. ' + ex);
+        });
+    }
+}
