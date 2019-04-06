@@ -13,37 +13,36 @@ import { capitalizeFirstLetter } from '../../utils/utils';
 * Crud container
 */
 export default class Crud extends Component {
-    constructor(props, context) {
-        super(props, context);
-    }
+  constructor(props, context) {
+    super(props, context);
+  }
 
-    render() {
-        let data = this.props.route.model;
-        let title_crud = capitalizeFirstLetter(data.title_crud);
-        let columns = data.columns;
-        let urlCreate = '#/' + data.model.toLowerCase() + '/' + 'add';
+  render() {
+    const data = this.props.route.model;
+    const title_crud = capitalizeFirstLetter(data.title_crud);
+    const urlCreate = '#/' + data.model.toLowerCase() + '/' + 'add';
 
-        return (
-            <div>
-                <Navbar name_admin={ data.name_admin } />
-                <Container>
-                    <Panel title={title_crud} width_panel="100%" style={{marginBottom: '1em'}}>
-                        <div className="pull-left">
-                            <ButtonLink link={urlCreate} classButton={"default"} text={"Add record"} />
-                        </div>
-                        <div className="pull-right" style={{marginBottom: '1em'}}>
-                            <Search model={data} />
-                        </div>
-                        <div style={{marginTop: '3em'}}>
-                            <Grid model={data} />
-                        </div>
-                    </Panel>
-                </Container>
-            </div>
-        );
-    }
+    return (
+      <div>
+        <Navbar name_admin={ data.name_admin } />
+        <Container>
+            <Panel title={title_crud} width_panel='100%' style={{marginBottom: '1em'}}>
+              <div className='float-left'>
+                  <ButtonLink link={urlCreate} classButton={'dark'} text={'Add record'} />
+              </div>
+              <div className='float-right' style={{marginBottom: '1em'}}>
+                  <Search model={data} />
+              </div>
+              <div style={{marginTop: '3em'}}>
+                  <Grid model={data} />
+              </div>
+            </Panel>
+        </Container>
+      </div>
+    );
+  }
 }
 
 Crud.propTypes = {
-    model: PropTypes.object
+  model: PropTypes.object
 }

@@ -9,10 +9,10 @@ import Crud from './admin/Crud';
 import Combo from './admin/Combo';
 
 const rootReducer = combineReducers({
-    routing: routerReducer,
-    Login,
-    Crud,
-    Combo,
+  routing: routerReducer,
+  Login,
+  Crud,
+  Combo,
 });
 
 export default rootReducer;

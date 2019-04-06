@@ -11,44 +11,44 @@ import * as actionsTypes from '../../constants/admin/ActionTypes';
 * @param: textSearch {string}: Text to search in crud
 */
 export function getDataGrid(url, page, pagination, columns, id_unique, textSearch='') {
-    let isSearch = false;
+  let isSearch = false;
 
-    //If its is null, then is searching and get all data for to search
-    if (page === null) {
-        isSearch = true;
-    } else {
-        let limit = page * pagination;
-        let start = limit - pagination;
-        url += '?skip=' + start +  '&limit=' + limit;
-    }
+  //If its is null, then is searching and get all data for to search
+  if (page === null) {
+    isSearch = true;
+  } else {
+    const limit = page * pagination;
+    const start = limit - pagination;
+    url += '?skip=' + start +  '&limit=' + limit;
+  }
 
-    return dispatch => {
-        fetch(url).then((response) => {
-            let totalRecords = parseInt(response.headers.get('X-Total-Count'));
-            return response.json().then((data) => {
-                dispatch({
-                    type: actionsTypes.GET_DATA_API_CRUD, data: data,
-                    columns: columns, pagination: pagination, totalRecords: totalRecords,
-                    id_unique: id_unique, isSearch: isSearch, textSearch: textSearch
-                });
-            })
-        }).catch((ex) => {
-            console.log('Error to get records. ' + ex);
-        });
-    }
+  return dispatch => {
+    fetch(url).then((response) => {
+      const totalRecords = parseInt(response.headers.get('X-Total-Count'));
+      return response.json().then((data) => {
+          dispatch({
+            type: actionsTypes.GET_DATA_API_CRUD, data: data,
+            columns: columns, pagination: pagination, totalRecords: totalRecords,
+            id_unique: id_unique, isSearch: isSearch, textSearch: textSearch
+          });
+      });
+    }).catch((ex) => {
+      console.log('Error to get records. ' + ex);
+    });
+  }
 }
 
-/** 
+/**
 * @method: setFetching
 * @description: Update isFetching property
 * @param: fetching {object} Value to set
 */
 export function setFetching(fetching) {
-    return dispatch => {
-        dispatch({
-            type: actionsTypes.SET_FETCHING, fetching: fetching
-        });
-    }
+  return dispatch => {
+    dispatch({
+      type: actionsTypes.SET_FETCHING, fetching: fetching
+    });
+  }
 }
 
 /**
@@ -57,19 +57,18 @@ export function setFetching(fetching) {
 * @param: url {string}: url api
 */
 export function getDataRecord(url) {
-    return dispatch => {
-        fetch(url).then((response) => {
-            return response.json().then((data) => {
-                dispatch({
-                    type: actionsTypes.GET_DATA_RECORD, data: data,
-                });
-            })
-        }).catch((ex) => {
-            console.log('Error to get records. ' + ex);
+  return dispatch => {
+    fetch(url).then((response) => {
+      return response.json().then((data) => {
+        dispatch({
+            type: actionsTypes.GET_DATA_RECORD, data: data,
         });
-    }
+      });
+    }).catch((ex) => {
+      console.log('Error to get records. ' + ex);
+    });
+  }
 }
-
 
 /**
 * @method: insertRecord
@@ -78,24 +77,24 @@ export function getDataRecord(url) {
 * @param: params {object}: Data form to insert
 */
 export function insertRecord(url, params) {
-    return dispatch => {
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: params
-        }).then((response) => {
-            return response.json().then((data) => {
-                dispatch({
-                    type: actionsTypes.INSERT_RECORD, data: data,
-                });
-            })
-        }).catch((ex) => {
-            console.log('Error to insert record. ' + ex);
+  return dispatch => {
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: params
+    }).then((response) => {
+      return response.json().then((data) => {
+        dispatch({
+          type: actionsTypes.INSERT_RECORD, data: data,
         });
-    }
+      })
+    }).catch((ex) => {
+      console.log('Error to insert record. ' + ex);
+    });
+  }
 }
 
 /**
@@ -105,22 +104,22 @@ export function insertRecord(url, params) {
 * @param: params {object}: Data form to insert
 */
 export function updateRecord(url, params) {
-    return dispatch => {
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: params
-        }).then((response) => {
-            return dispatch({
-                type: actionsTypes.UPDATE_RECORD,
-            });
-        }).catch((ex) => {
-            console.log('Error to update record. ' + ex);
-        });
-    }
+  return dispatch => {
+    fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: params
+    }).then((response) => {
+      return dispatch({
+        type: actionsTypes.UPDATE_RECORD,
+      });
+    }).catch((ex) => {
+      console.log('Error to update record. ' + ex);
+    });
+  }
 }
 
 /**
@@ -129,17 +128,17 @@ export function updateRecord(url, params) {
 * @param: url {string}: url api
 */
 export function deleteRecord(url) {
-    return dispatch => {
-        fetch(url, {
-            method: 'DELETE'
-        }).then((response) => {
-            return dispatch({
-                type: actionsTypes.DELETE_RECORD
-            });
-        }).catch((ex) => {
-            console.log('Error to delete record. ' + ex);
-        });
-    }
+  return dispatch => {
+    fetch(url, {
+      method: 'DELETE'
+    }).then((response) => {
+      return dispatch({
+        type: actionsTypes.DELETE_RECORD
+      });
+    }).catch((ex) => {
+      console.log('Error to delete record. ' + ex);
+    });
+  }
 }
 
 /**
@@ -148,15 +147,15 @@ export function deleteRecord(url) {
 * @param: url {string}: url api
 */
 export function getDataCombo(url) {
-    return dispatch => {
-        fetch(url).then((response) => {
-            return response.json().then((data) => {
-                dispatch({
-                    type: actionsTypes.GET_DATA_COMBO, data: data,
-                });
-            })
-        }).catch((ex) => {
-            console.log('Error to get records. ' + ex);
+  return dispatch => {
+    fetch(url).then((response) => {
+      return response.json().then((data) => {
+        dispatch({
+          type: actionsTypes.GET_DATA_COMBO, data: data,
         });
-    }
+      })
+    }).catch((ex) => {
+      console.log('Error to get records. ' + ex);
+    });
+  }
 }

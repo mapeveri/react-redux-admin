@@ -8,23 +8,23 @@ import PanelSections from '../../components/admin/PanelSections';
 * Crud container
 */
 export default class Dashboard extends Component {
-    constructor(props, context) {
-        super(props, context);
-    }
+  constructor(props, context) {
+    super(props, context);
+  }
 
-    render() {
-        let data = this.props.route.data;
-        return (
-            <div>
-                <Navbar name_admin={ data.name_admin } />
-                <Container>
-                    <PanelSections data={data} />
-                </Container>
-            </div>
-        );
-    }
+  render() {
+    const data = this.props.route.data;
+    return (
+      <div>
+        <Navbar name_admin={ data.name_admin } />
+        <Container>
+            <PanelSections data={data} />
+        </Container>
+      </div>
+    );
+  }
 }
 
 Dashboard.propTypes = {
-    data: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
 }

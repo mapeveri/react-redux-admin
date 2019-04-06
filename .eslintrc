@@ -1,19 +1,9 @@
 {
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
-  },
+  "extends": "airbnb-base",
   "env": {
-    "browser": true,
     "node": true
   },
   "rules": {
-    "strict": 0,
-    "no-underscore-dangle": 0,
-    "quotes": [
-      2,
-      "single"
-    ]
-  },
-  "parser": "babel-eslint"
+    "no-console": "off"
+  }
 }

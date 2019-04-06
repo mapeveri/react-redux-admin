@@ -1,5 +1,5 @@
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
-import BootstrapJs from 'bootstrap/dist/js/bootstrap.js';
+import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
+import BootstrapJs from 'bootstrap/dist/js/bootstrap.min.js';
 
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
@@ -21,28 +21,28 @@ const history = syncHistoryWithStore(hashHistory, store);
 * Main component of react-redux-admin
 */
 export default class ReactReduxAdmin extends Component {
-    constructor(props, context) {
-      super(props, context);
-    }
+  constructor(props, context) {
+    super(props, context);
+  }
 
-    render() {
-        //Generate routes
-        let routes = generateRoutes(this.props.data);
+  render() {
+    //Generate routes
+    const routes = generateRoutes(this.props.data);
 
-        return (
-            <Provider store={store}>
-                <Router history={history}>
-                    <Route>
-                        <Route path="/" data={this.props.data} component={Login} />
-                        <Route path="/dashboard" data={this.props.data} component={Dashboard} />
-                        { routes }
-                    </Route>
-                </Router>
-            </Provider>
-        );
-    }
+    return (
+      <Provider store={store}>
+        <Router history={history}>
+          <Route>
+              <Route path='/' data={this.props.data} component={Login} />
+              <Route path='/dashboard' data={this.props.data} component={Dashboard} />
+              { routes }
+          </Route>
+        </Router>
+      </Provider>
+    );
+  }
 }
 
 ReactReduxAdmin.propTypes = {
-    data: React.PropTypes.object.isRequired
+  data: React.PropTypes.object.isRequired
 };

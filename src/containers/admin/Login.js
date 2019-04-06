@@ -11,49 +11,50 @@ import Panel from '../../components/admin/Panel';
 * Login page container
 */
 class Login extends Component {
-    constructor(props, context) {
-        super(props, context);
-    }
+  constructor(props, context) {
+    super(props, context);
+  }
 
-    /**
-    * @method: handleSubmit
-    * @description: Submit form
-    */
-    handleSubmit(data, dispatch) {
-        //hashHistory.push('/admin/index');
-    }
+  /**
+  * @method: handleSubmit
+  * @description: Submit form
+  */
+  handleSubmit(data, dispatch) {
+    //hashHistory.push('/admin/index');
+  }
 
-    render() {
-        let data = this.props.route.data;
-        return (
-            <div>
-                <Navbar name_admin={ data.name_admin } />
-                <Container>
-                <Center>
-                    <Panel title={"Login"} width_panel="50%">
-                        <form onSubmit={this.handleSubmit}>
-                            <div className="form-group">
-                                <input type="text" className="form-control" placeholder="Username" />
-                            </div>
-                            <div className="form-group">
-                                <input type="password" className="form-control" placeholder="Password"/>
-                            </div>
-                            <div>
-                                <button type="submit" className="btn btn-default">
-                                    {"Login"}
-                                </button>
-                            </div>
-                        </form>
-                    </Panel>
-                </Center>
-                </Container>
-            </div>
-        )
-    }
+  render() {
+      const data = this.props.route.data;
+
+      return (
+        <div>
+          <Navbar name_admin={ data.name_admin } />
+          <Container>
+            <Center>
+              <Panel title={'Login'} width_panel='50%'>
+                <form onSubmit={this.handleSubmit}>
+                    <div className='form-group'>
+                        <input type='text' className='form-control' placeholder='Username' />
+                    </div>
+                    <div className='form-group'>
+                        <input type='password' className='form-control' placeholder='Password'/>
+                    </div>
+                    <div>
+                        <button type='submit' className='btn btn-dark'>
+                            {'Login'}
+                        </button>
+                    </div>
+                </form>
+              </Panel>
+            </Center>
+          </Container>
+        </div>
+      )
+  }
 }
 
 Login.propTypes = {
-    fields: PropTypes.object.isRequired,
+  fields: PropTypes.object,
 }
 
 //Conect component to redux

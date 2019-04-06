@@ -16,7 +16,7 @@ app.use('/build', express.static(path.join(process.cwd() + '/build')));
 app.use(bodyParser.json());
 app.use(methodOverride());
 
-mongoose.connect('mongodb://localhost/reactreduxadmin');
+mongoose.connect('mongodb://localhost/reactreduxadmin', { useMongoClient: true });
 
 restify.serve(router, 
   mongoose.model('posts', new mongoose.Schema({
